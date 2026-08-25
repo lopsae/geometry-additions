@@ -13,7 +13,7 @@ let package = Package(
     products: [
         .library(
             name: "GeometryAdditions",
-            targets: ["Library"]
+            targets: ["GeometryAdditions"]
         ),
     ],
     dependencies: [
@@ -22,7 +22,7 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "Library",
+            name: "GeometryAdditions",
             path: "sources",
             resources: [
 //                .process("assets.xcassets")
@@ -31,7 +31,7 @@ let package = Package(
         .testTarget(
             name: "UnitTests",
             dependencies: [
-                "Library",
+                "GeometryAdditions",
 //                .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
             ],
             path: "tests",
