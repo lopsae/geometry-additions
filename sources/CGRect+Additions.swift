@@ -1,11 +1,11 @@
 //
-//  Preview Utilities
+//  GeometryAdditions
 //  Created by Maic Lopez Saenz.
 //
 
 
-import CoreGraphics
-import SwiftUI
+public import CoreFoundation
+public import SwiftUI
 
 
 extension CGRect {

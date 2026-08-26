@@ -1,5 +1,5 @@
 //
-//  PreviewUtilities
+//  GeometryAdditions
 //  Created by Maic Lopez Saenz.
 //
 

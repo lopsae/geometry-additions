@@ -1,5 +1,5 @@
 //
-//  Preview Utilities
+//  GeometryAdditions
 //  Created by Maic Lopez Saenz.
 //
 
@@ -7,7 +7,7 @@
 #if canImport(UIKit)
 
 
-import UIKit
+public import UIKit
 
 
 extension UIEdgeInsets {

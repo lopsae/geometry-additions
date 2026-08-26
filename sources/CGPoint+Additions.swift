@@ -1,10 +1,10 @@
 //
-//  Preview Utilities
+//  GeometryAdditions
 //  Created by Maic Lopez Saenz.
 //
 
 
-import CoreGraphics
+public import CoreFoundation
 
 
 extension CGPoint {
