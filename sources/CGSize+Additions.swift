@@ -23,7 +23,7 @@ extension CGSize {
 
 
     @inlinable nonisolated
-    static func all(_ length: CGFloat) -> Self {
+    public static func all(_ length: CGFloat) -> Self {
         .init(all: length)
     }
 
@@ -47,7 +47,7 @@ extension CGSize {
 
 
     @inlinable nonisolated
-    func setting(
+    public func setting(
         length: CGFloat,
         along axis: Axis
     ) -> Self {
@@ -124,8 +124,10 @@ extension CGSize {
 
 
     /// Returns a `CGSize` with each component of `self` multiplied by `multiplier`.
+    /// - Parameter multiplier: The value by which to multiply each component of `self`.
+    /// - Returns: A new size with the multiplied components.
     @inlinable nonisolated
-    func multiplying(by multiplier: CGFloat) -> Self {
+    public func multiplying(by multiplier: CGFloat) -> Self {
         .init(
             width:  width  * multiplier,
             height: height * multiplier
@@ -134,7 +136,7 @@ extension CGSize {
 
 
     @inlinable nonisolated
-    func multiplying(
+    public func multiplying(
         by multiplier: CGFloat,
         along axis: Axis
     ) -> Self {

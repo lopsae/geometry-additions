@@ -52,7 +52,7 @@ extension EdgeInsets {
     }
 
 
-    subscript(edge edge: Edge) -> CGFloat {
+    public subscript(edge edge: Edge) -> CGFloat {
         switch edge {
         case .top:      top
         case .leading:  leading
@@ -62,7 +62,7 @@ extension EdgeInsets {
     }
 
 
-    subscript(edge edge: VerticalEdge) -> CGFloat {
+    public subscript(edge edge: VerticalEdge) -> CGFloat {
         switch edge {
         case .top:    top
         case .bottom: bottom

@@ -87,9 +87,11 @@ extension CGRect {
     }
 
 
-    /// A string description using the given `FormatStyle` to format each rectangle property.
+    /// String description using the given `FormatStyle` to format all rectangle's component.
+    /// - Parameter format: The format style for all the rectangle's components.
+    /// - Returns: The formatted string description of `self`.
     nonisolated
-    func debugDescription<Style>(format: Style) -> String
+    public func debugDescription<Style>(format: Style) -> String
     where Style: FormatStyle, Style.FormatInput == Double, Style.FormatOutput == String {
         let xString = origin.x.formatted(format)
         let yString = origin.y.formatted(format)
