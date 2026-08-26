@@ -60,7 +60,7 @@ for target in package.targets {
         // https://useyourloaf.com/blog/approachable-concurrency-in-swift-packages/
         // https://www.avanderlee.com/concurrency/approachable-concurrency-in-swift-6-2-a-clear-guide/
 
-        .defaultIsolation(MainActor.self),
+        .defaultIsolation(nil),
 
         // https://github.com/swiftlang/swift-evolution/blob/main/proposals/0461-async-function-isolation.md
         .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
