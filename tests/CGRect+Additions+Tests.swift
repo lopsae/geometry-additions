@@ -4,7 +4,7 @@
 //
 
 
-@testable import Library
+@testable import GeometryAdditions
 
 import CoreGraphics
 import Testing
