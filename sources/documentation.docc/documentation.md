@@ -7,8 +7,8 @@ Additions to `CGPoint`, `CGSize`, `CGRect` and other geometry related types.
 `GeometryAdditions` adds a variety of functions for working with geometry related types like
 `CGPoint` or `Edge`.
 
-For code that lives in `@ContentBuilder` closures, the package offers several modifier functions
-that can be used for [method chaining](https://en.wikipedia.org/wiki/Method_chaining).
+The package also adds several modifier functions that can be used for [method chaining](https://en.wikipedia.org/wiki/Method_chaining)
+for code that lives in `@ContentBuilder` closures.
 
 
 ## Topics
