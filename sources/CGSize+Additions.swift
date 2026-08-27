@@ -348,9 +348,6 @@ extension CGSize: @retroactive ExpressibleByArrayLiteral {
             elements.count == 2,
             "CGSize expressed as an array literal must have exactly 2 elements: \(elements)"
         )
-        guard elements.count == 2 else {
-            fatalError("CGSize expressed as an array literal must have exactly 2 elements: \(elements)")
-        }
         self.init(width: elements[0], height: elements[1])
     }
 
