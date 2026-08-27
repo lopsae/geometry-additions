@@ -16,37 +16,23 @@ let package = Package(
             targets: ["GeometryAdditions"]
         ),
     ],
-    dependencies: [
-//        .package(url: "https://github.com/swiftlang/swift-docc-plugin", from: "1.1.0"),
-//        .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", from: "1.19.0")
-    ],
+    dependencies: [],
     targets: [
         .target(
             name: "GeometryAdditions",
             path: "sources",
-            resources: [
-//                .process("assets.xcassets")
-            ]
+            resources: []
         ),
         .testTarget(
             name: "UnitTests",
             dependencies: [
                 "GeometryAdditions",
-//                .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
             ],
             path: "tests",
             exclude: [
-//                "UnitTests.xctestplan",
+                "UnitTests.xctestplan",
             ]
-        ),
-//        .testTarget(
-//            name: "Illustrations",
-//            dependencies: ["Library"],
-//            path: "illustrations",
-//            exclude: [
-//                "Illustrations.xctestplan",
-//            ]
-//        ),
+        )
     ]
 )
 
@@ -55,11 +41,6 @@ let package = Package(
 for target in package.targets {
     var settings = target.swiftSettings ?? []
     settings.append(contentsOf: [
-        // https://developer.apple.com/documentation/xcode/build-settings-reference#Approachable-Concurrency
-        // https://developer.apple.com/documentation/xcode/build-settings-reference#Approachable-Concurrency
-        // https://useyourloaf.com/blog/approachable-concurrency-in-swift-packages/
-        // https://www.avanderlee.com/concurrency/approachable-concurrency-in-swift-6-2-a-clear-guide/
-
         .defaultIsolation(nil),
 
         // https://github.com/swiftlang/swift-evolution/blob/main/proposals/0461-async-function-isolation.md
