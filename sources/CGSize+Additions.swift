@@ -75,10 +75,6 @@ extension CGSize {
     /// Updates `width` when the `horizontal` axis is provided, and `height` for the `vertical` axis.
     ///
     /// - Parameters:
-    ///   - newWidth: The new value for `width`.
-    ///   - newHeight: The new value for `height`.
-    /// - Returns: A copy of `self` with the given components updated.
-    /// - Parameters:
     ///   - length: The length for the component along the given axis.
     ///   - axis: The axis of the component to update.
     /// - Returns: `self` with the component along `axis` updated to the given length.
@@ -101,7 +97,7 @@ extension CGSize {
     /// - Parameters:
     ///   - width: The value to add to width; defaults to zero.
     ///   - height: The value to add to height; defaults to zero.
-    /// - Returns: `self` with the given components added to.
+    /// - Returns: `self` with the given components added.
     @inlinable nonisolated
     public func adding(width: CGFloat = .zero, height: CGFloat = .zero) -> Self {
         .init(width: self.width + width, height: self.height + height)
@@ -123,9 +119,9 @@ extension CGSize {
     /// Subtracts the given components.
     ///
     /// - Parameters:
-    ///   - width: The value to subtract to width; defaults to zero.
-    ///   - height: The value to subtract to height; defaults to zero.
-    /// - Returns: `self` with the given components subtracted to.
+    ///   - width: The value to subtract from width; defaults to zero.
+    ///   - height: The value to subtract from height; defaults to zero.
+    /// - Returns: `self` with the given components subtracted.
     @inlinable nonisolated
     public func subtracting(width: CGFloat = .zero, height: CGFloat = .zero) -> Self {
         .init(width: self.width - width, height: self.height - height)
@@ -161,7 +157,7 @@ extension CGSize {
 
     /// Updates to a size that can contain both `self` and the given size.
     ///
-    /// The updated size size uses the largest of each component from both sizes.
+    /// The updated size uses the largest of each component from both sizes.
     ///
     /// - Parameter other: The size to envelop.
     @inlinable nonisolated
@@ -180,7 +176,7 @@ extension CGSize {
     }
 
 
-    /// Rounds both component to an integer using the given rule.
+    /// Rounds both components to an integer using the given rule.
     ///
     /// - Parameter rule: The rounding rule to apply to both components.
     /// - Returns: `self` with both components rounded to an integer value by the given rule.
@@ -196,7 +192,7 @@ extension CGSize {
     /// Multiplies both components by a given multiplier.
     ///
     /// - Parameter multiplier: The value to multiply both components by.
-    /// - Returns: `self` with both component multiplied by `multiplier`.
+    /// - Returns: `self` with both components multiplied by `multiplier`.
     @inlinable nonisolated
     public func multiplying(by multiplier: CGFloat) -> Self {
         .init(
@@ -228,18 +224,18 @@ extension CGSize {
     }
 
 
-    /// Produces the Hadamart product with the given size.
+    /// Produces the Hadamard product with the given size.
     ///
-    /// The Hadamart product (or element-wise product) produces a size where each component is
-    /// the result of the operands corresponding components, multiplied together.
+    /// The Hadamard product (or element-wise product) produces a size where each component is
+    /// the result of the operands' corresponding components, multiplied together.
     ///
     /// That is, the returned _width_ component will have the value `self.width * multiplier.width`;
     /// and its corresponding for _height_.
     ///
     /// https://en.wikipedia.org/wiki/Hadamard_product_(matrices)
     ///
-    /// - Parameter multiplier: The size by which to produce the Hadamart product with `self`.
-    /// - Returns: The Hadamart product of `self` and `multiplier`.
+    /// - Parameter multiplier: The size by which to produce the Hadamard product with `self`.
+    /// - Returns: The Hadamard product of `self` and `multiplier`.
     @inlinable nonisolated
     func hadamart(bySize multiplier: CGSize) -> Self {
         .init(
@@ -310,10 +306,10 @@ extension CGSize {
 
     /// Centers a rectangle in the given size.
     ///
-    /// Produces a rectangle of size of `self` centered in a rectangle of size `other` with origin
+    /// Produces a rectangle the size of `self` centered in a rectangle of size `other` with origin
     /// at the zero value point.
     ///
-    /// - Parameter size: The size to center `self` in.
+    /// - Parameter other: The size to center `self` in.
     /// - Returns: A rectangle of size `self` centered in the given size.
     @inlinable nonisolated
     public func centered(in other: CGSize) -> CGRect {
@@ -350,7 +346,7 @@ extension CGSize: @retroactive ExpressibleByArrayLiteral {
     public init(arrayLiteral elements: CGFloat...) {
         precondition(
             elements.count == 2,
-            "CGPoint expressed as an array literal must have exactly 2 elements: \(elements)"
+            "CGSize expressed as an array literal must have exactly 2 elements: \(elements)"
         )
         guard elements.count == 2 else {
             fatalError("CGSize expressed as an array literal must have exactly 2 elements: \(elements)")

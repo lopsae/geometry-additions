@@ -117,7 +117,7 @@ extension CGRect {
     }
 
 
-    /// String description using the given `FormatStyle` to format all rectangle's properties.
+    /// String description using the given `FormatStyle` to format all of the rectangle's properties.
     ///
     /// - Parameter format: The format style for all the rectangle's properties.
     /// - Returns: The formatted string description of `self`.

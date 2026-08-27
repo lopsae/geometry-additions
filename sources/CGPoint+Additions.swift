@@ -20,7 +20,7 @@ extension CGPoint {
     /// Multiplies both components by a given multiplier.
     ///
     /// - Parameter multiplier: The value to multiply both components by.
-    /// - Returns: `self` with both component multiplied by `multiplier`.
+    /// - Returns: `self` with both components multiplied by `multiplier`.
     @inlinable nonisolated
     public func multiplying(by multiplier: CGFloat) -> Self {
         .init(
@@ -30,18 +30,18 @@ extension CGPoint {
     }
 
 
-    /// Produces the Hadamart product with the given point.
+    /// Produces the Hadamard product with the given point.
     ///
-    /// The Hadamart product (or element-wise product) produces a point where each component is
-    /// the result of the operands corresponding components, multiplied together.
+    /// The Hadamard product (or element-wise product) produces a point where each component is
+    /// the result of the operands' corresponding components, multiplied together.
     ///
     /// That is, the returned _x_ component will have the value `self.x * multiplier.x`; and its
     /// corresponding for _y_.
     ///
     /// https://en.wikipedia.org/wiki/Hadamard_product_(matrices)
     ///
-    /// - Parameter multiplier: The point by which to produce the Hadamart product with `self`.
-    /// - Returns: The Hadamart product of `self` and `multiplier`.
+    /// - Parameter multiplier: The point by which to produce the Hadamard product with `self`.
+    /// - Returns: The Hadamard product of `self` and `multiplier`.
     @inlinable nonisolated
     func hadamart(by multiplier: Self) -> Self {
         .init(
@@ -51,7 +51,7 @@ extension CGPoint {
     }
 
 
-    /// Returns the Hadamart product of `self` and `multiplier`, where `x` is multiplied by
+    /// Returns the Hadamard product of `self` and `multiplier`, where `x` is multiplied by
     /// `width`, and `y` by `height`.
     ///
     /// https://en.wikipedia.org/wiki/Hadamard_product_(matrices)
