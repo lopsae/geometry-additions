@@ -4,11 +4,11 @@
 version: 1
 builder:
   configs:
-    - documentation_targets: [GeometryAdditions]
-      platform: ios
+    - platform: ios
+      documentation_targets: [GeometryAdditions]
       custom_documentation_parameters:
         - --experimental-skip-synthesized-symbols
-    - documentation_targets: [GeometryAdditions]
-      platform: macos
+    - platform: macos
+      documentation_targets: [GeometryAdditions]
       custom_documentation_parameters:
         - --experimental-skip-synthesized-symbols
