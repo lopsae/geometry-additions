@@ -1,9 +1,9 @@
 Release Notes
 =============
 
-v0.7.0
+v0.6.0
 --------------------
-In Development.
+Latest.
 
 + Initial package release.
 + Moved additions for `CGPoint`, `CGSize`, `CGRect`, `EdgeInsets`, and `UIEdgeInsets` from `PreviewUtilities`.
