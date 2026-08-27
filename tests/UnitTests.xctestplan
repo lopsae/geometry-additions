@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "49520BFB-BB23-4F9F-B56A-B7684D0F7612",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "performanceAntipatternCheckerEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "UnitTests",
+        "name" : "UnitTests"
+      }
+    }
+  ],
+  "version" : 1
+}

@@ -1,0 +1,14 @@
+# https://swiftpackageindex.com/swiftpackageindex/spimanifest/1.13.0/documentation/spimanifest
+# Validation: https://swiftpackageindex.com/validate-spi-manifest
+
+version: 1
+builder:
+  configs:
+    - platform: ios
+      documentation_targets: [GeometryAdditions]
+      custom_documentation_parameters:
+        - --experimental-skip-synthesized-symbols
+    - platform: macos
+      documentation_targets: [GeometryAdditions]
+      custom_documentation_parameters:
+        - --experimental-skip-synthesized-symbols
