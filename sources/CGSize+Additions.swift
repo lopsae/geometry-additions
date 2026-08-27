@@ -237,7 +237,7 @@ extension CGSize {
     /// - Parameter multiplier: The size by which to produce the Hadamard product with `self`.
     /// - Returns: The Hadamard product of `self` and `multiplier`.
     @inlinable nonisolated
-    func hadamart(bySize multiplier: CGSize) -> Self {
+    func hadamard(bySize multiplier: CGSize) -> Self {
         .init(
             width:  width  * multiplier.width,
             height: height * multiplier.height

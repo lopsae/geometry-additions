@@ -43,7 +43,7 @@ extension CGPoint {
     /// - Parameter multiplier: The point by which to produce the Hadamard product with `self`.
     /// - Returns: The Hadamard product of `self` and `multiplier`.
     @inlinable nonisolated
-    func hadamart(by multiplier: Self) -> Self {
+    func hadamard(by multiplier: Self) -> Self {
         .init(
             x: self.x * multiplier.x,
             y: self.y * multiplier.y
@@ -56,7 +56,7 @@ extension CGPoint {
     ///
     /// https://en.wikipedia.org/wiki/Hadamard_product_(matrices)
     @inlinable nonisolated
-    func hadamart(bySize multiplier: CGSize) -> Self {
+    func hadamard(bySize multiplier: CGSize) -> Self {
         .init(
             x: self.x * multiplier.width,
             y: self.y * multiplier.height
