@@ -140,19 +140,19 @@ import UIKit
 
 extension CGRect {
 
-    /// Insets in both axis by the same given value.
+    /// Insets all edges by the same given value.
     ///
-    /// - Parameter value: The value to inset in both axis.
-    /// - Returns: `self` inset by the given value in both axis.
+    /// - Parameter value: The value to inset all edges.
+    /// - Returns: `self` inset by the given value in all edges.
     @inlinable nonisolated
     public func inset(by value: CGFloat) -> Self {
         inset(by: UIEdgeInsets.all(value))
     }
 
 
-    /// Outsets in both axis by the same given value.
+    /// Outsets all edges by the same given value.
     ///
-    /// - Parameter value: The value to outset in both axis.
+    /// - Parameter value: The value to outset all edges.
     /// - Returns: `self` outset by the given value in both axis.
     @inlinable nonisolated
     public func outset(by value: CGFloat) -> Self {
@@ -168,11 +168,12 @@ extension CGRect {
 
 extension CGRect {
     
-    /// Insets in both axis by the same given value.
-    /// - Parameter value: The value to inset in both axis.
-    /// - Returns: `self` inset by the given value in both axis.
+    /// Insets all edges by the same given value.
+    ///
+    /// - Parameter value: The value to inset all edges.
+    /// - Returns: `self` inset by the given value in all edges.
     @inlinable nonisolated
-    func inset(by value: CGFloat) -> Self {
+    public func inset(by value: CGFloat) -> Self {
         self.insetBy(dx: value, dy: value)
     }
 
