@@ -8,6 +8,61 @@ public import CoreFoundation
 public import SwiftUI
 
 
+// MARK: - Properties
+
+
+extension CGRect {
+
+    /// The point at the center of `self`.
+    @inlinable nonisolated
+    public var centerPoint: CGPoint {
+        size.toPoint
+            .multiplying(by: 0.5)
+            .offset(by: origin)
+    }
+
+    /// The point at the minimum _x_ and _y_ values.
+    @inlinable nonisolated
+    public var minPoint: CGPoint {
+        .init(x: minX, y: minY)
+    }
+
+    /// The point at the maximum _x_ and _y_ values.
+    @inlinable nonisolated
+    public var maxPoint: CGPoint {
+        .init(x: maxX, y: maxY)
+    }
+
+    /// The point at the top leading corner.
+    @inlinable nonisolated
+    public var topLeadingPoint: CGPoint {
+        .init(x: minX, y: minY)
+    }
+
+    /// The point at the top trailing corner.
+    @inlinable nonisolated
+    public var topTrailingPoint: CGPoint {
+        .init(x: maxX, y: minY)
+    }
+
+    /// The point at the bottom trailing corner.
+    @inlinable nonisolated
+    public var bottomTrailingPoint: CGPoint {
+        .init(x: maxX, y: maxY)
+    }
+
+    /// The point at the bottom leading corner.
+    @inlinable nonisolated
+    public var bottomLeadingPoint: CGPoint {
+        .init(x: minX, y: maxY)
+    }
+
+}
+
+
+// MARK: - Operations
+
+
 extension CGRect {
 
     /// Sets the given properties in a copy of `self`.
@@ -34,15 +89,6 @@ extension CGRect {
         if let newWidth  { mutableRect.size.width  = newWidth }
         if let newHeight { mutableRect.size.height = newHeight }
         return mutableRect
-    }
-
-
-    /// The point at the center of `self`.
-    @inlinable nonisolated
-    public var center: CGPoint {
-        size.toPoint
-            .multiplying(by: 0.5)
-            .offset(by: origin)
     }
 
 
