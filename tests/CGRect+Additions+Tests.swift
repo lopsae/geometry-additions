@@ -12,10 +12,29 @@ import Testing
 
 struct CGRectAdditionsTests {
 
-    @Test func center() async throws {
+    @Test func centerSize() async throws {
         let rect: CGRect = .init(origin: [5, 7], size: [200, 100])
         let centered = rect.center(size: [60, 40])
         #expect(centered == .init(origin: [75, 37], size: [60, 40]))
+    }
+
+
+    @Test func centerPoint() async throws {
+        let rect: CGRect = .init(origin: [5, 7], size: [200, 100])
+        #expect(rect.centerPoint == [105, 57])
+    }
+
+
+    @Test func cornerPoints() async throws {
+        let rect: CGRect = .init(origin: [5, 7], size: [200, 100])
+
+        #expect(rect.minPoint == [5, 7])
+        #expect(rect.maxPoint == [205, 107])
+
+        #expect(rect.topLeadingPoint     == [5,   7])
+        #expect(rect.topTrailingPoint    == [205, 7])
+        #expect(rect.bottomTrailingPoint == [205, 107])
+        #expect(rect.bottomLeadingPoint  == [5,   107])
     }
 
 
