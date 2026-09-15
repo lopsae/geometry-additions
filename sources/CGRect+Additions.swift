@@ -213,7 +213,7 @@ extension CGRect {
 #if os(macOS)
 
 extension CGRect {
-    
+
     /// Insets all edges by the same given value.
     ///
     /// - Parameter value: The value to inset all edges.
@@ -221,6 +221,16 @@ extension CGRect {
     @inlinable nonisolated
     public func inset(by value: CGFloat) -> Self {
         self.insetBy(dx: value, dy: value)
+    }
+
+
+    /// Outsets all edges by the same given value.
+    ///
+    /// - Parameter value: The value to outset all edges.
+    /// - Returns: `self` outset by the given value in both axis.
+    @inlinable nonisolated
+    public func outset(by value: CGFloat) -> Self {
+        self.insetBy(dx: -value, dy: -value)
     }
 
 }
