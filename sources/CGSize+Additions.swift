@@ -8,6 +8,28 @@ public import CoreFoundation
 public import SwiftUI
 
 
+extension CGSize: @retroactive ExpressibleByArrayLiteral {
+
+    /// Creates a size from a two-element array literal.
+    ///
+    /// Uses the first element of the array as the _width_ component, and the second as _height_.
+    ///
+    /// - Parameter elements: A two-element array literal containing the size components.
+    ///
+    /// - Note:
+    /// The array literal **must** contain two elements; otherwise the call will trigger a
+    /// precondition failure.
+    public init(arrayLiteral elements: CGFloat...) {
+        precondition(
+            elements.count == 2,
+            "CGSize expressed as an array literal must have exactly 2 elements: \(elements)"
+        )
+        self.init(width: elements[0], height: elements[1])
+    }
+
+}
+
+
 extension CGSize {
 
     @inlinable nonisolated
@@ -327,28 +349,6 @@ extension CGSize {
     @inlinable nonisolated
     public func centered(in rect: CGRect) -> CGRect {
         rect.center(size: self)
-    }
-
-}
-
-
-extension CGSize: @retroactive ExpressibleByArrayLiteral {
-
-    /// Creates a size from a two-element array literal.
-    ///
-    /// Uses the first element of the array as the _width_ component, and the second as _height_.
-    ///
-    /// - Parameter elements: A two-element array literal containing the size components.
-    ///
-    /// - Note:
-    /// The array literal **must** contain two elements; otherwise the call will trigger a
-    /// precondition failure.
-    public init(arrayLiteral elements: CGFloat...) {
-        precondition(
-            elements.count == 2,
-            "CGSize expressed as an array literal must have exactly 2 elements: \(elements)"
-        )
-        self.init(width: elements[0], height: elements[1])
     }
 
 }

@@ -7,6 +7,28 @@
 public import CoreFoundation
 
 
+extension CGPoint: @retroactive ExpressibleByArrayLiteral {
+
+    /// Creates a point from a two-element array literal.
+    ///
+    /// Uses the first element of the array as the _x_ component, and the second as _y_.
+    ///
+    /// - Parameter elements: A two-element array literal containing the point components.
+    ///
+    /// - Note:
+    /// The array literal **must** contain two elements; otherwise the call will trigger a
+    /// precondition failure.
+    public init(arrayLiteral elements: CGFloat...) {
+        precondition(
+            elements.count == 2,
+            "CGPoint expressed as an array literal must have exactly 2 elements: \(elements)"
+        )
+        self.init(x: elements[0], y: elements[1])
+    }
+
+}
+
+
 extension CGPoint {
 
     // TODO: Add adding.
@@ -107,29 +129,6 @@ extension CGPoint {
             x: self.x * multiplier.width,
             y: self.y * multiplier.height
         )
-    }
-
-}
-
-
-extension CGPoint: @retroactive ExpressibleByArrayLiteral {
-
-    
-    /// Creates a point from a two-element array literal.
-    ///
-    /// Uses the first element of the array as the _x_ component, and the second as _y_.
-    ///
-    /// - Parameter elements: A two-element array literal containing the point components.
-    ///
-    /// - Note:
-    /// The array literal **must** contain two elements; otherwise the call will trigger a
-    /// precondition failure.
-    public init(arrayLiteral elements: CGFloat...) {
-        precondition(
-            elements.count == 2,
-            "CGPoint expressed as an array literal must have exactly 2 elements: \(elements)"
-        )
-        self.init(x: elements[0], y: elements[1])
     }
 
 }
