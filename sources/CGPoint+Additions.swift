@@ -92,9 +92,6 @@ extension CGPoint {
     }
 
 
-    // FIXME: Publicize rest of functions and test all.
-
-
     /// Produces the Hadamard product with the given point.
     ///
     /// The Hadamard product (or element-wise product) produces a point where each component is
@@ -121,7 +118,7 @@ extension CGPoint {
     /// the result of the operands' corresponding axial components, multiplied together.
     ///
     /// That is, the returned _x_ component will have the value `self.x * multiplier.width`; and for
-    /// _y_ the value ``self.y * multiplier.height`.
+    /// _y_ the value `self.y * multiplier.height`.
     ///
     /// https://en.wikipedia.org/wiki/Hadamard_product_(matrices)
     ///
