@@ -9,13 +9,56 @@ public import CoreFoundation
 
 extension CGPoint {
 
+    // TODO: Add adding.
+
+
+    /// Offsets by the given components.
+    ///
+    /// Equivalent to adding the given components to `self`.
+    ///
+    /// - Parameters:
+    ///   - x: The value to offset the _x_ component; defaults to zero.
+    ///   - y: The value to offset the _y_ component; defaults to zero.
+    /// - Returns: `self` offset by the given components.
     @inlinable nonisolated
-    func adding(size: CGSize) -> Self {
+    public func offset(x: CGFloat = .zero, y: CGFloat = .zero) -> Self {
+        .init(
+            x: self.x + x,
+            y: self.y + y
+        )
+    }
+
+
+    /// Offsets by the given `CGPoint`.
+    ///
+    /// Equivalent to adding the corresponding components of `other`.
+    ///
+    /// - Parameter other: A point to offset `self` by.
+    /// - Returns: `self` offset by the given point.
+    @inlinable nonisolated
+    public func offset(by other: Self) -> Self {
+        .init(
+            x: self.x + other.x,
+            y: self.y + other.y
+        )
+    }
+
+
+    /// Offsets by the given `CGSize`.
+    ///
+    /// Equivalent to adding the corresponding axial components: _x_ is offset by the size's width,
+    /// and _y_ by its height.
+    ///
+    /// - Parameter size: The size to offset `self` by.
+    /// - Returns: `self` offset by the given size.
+    @inlinable nonisolated
+    public func adding(size: CGSize) -> Self {
         .init(
             x: self.x + size.width,
             y: self.y + size.height
         )
     }
+
 
     /// Multiplies both components by a given multiplier.
     ///
@@ -28,6 +71,9 @@ extension CGPoint {
             y: self.y * multiplier
         )
     }
+
+
+    // FIXME: Publicize rest of functions and test all.
 
 
     /// Produces the Hadamard product with the given point.
@@ -60,41 +106,6 @@ extension CGPoint {
         .init(
             x: self.x * multiplier.width,
             y: self.y * multiplier.height
-        )
-    }
-
-
-    // TODO: Add adding.
-
-
-    /// Offsets by the given components.
-    ///
-    /// Equivalent to adding the given components to `self`.
-    ///
-    /// - Parameters:
-    ///   - x: The value to offset the _x_ component; defaults to zero.
-    ///   - y: The value to offset the _y_ component; defaults to zero.
-    /// - Returns: `self` offset by the given components.
-    @inlinable nonisolated
-    public func offset(x: CGFloat = .zero, y: CGFloat = .zero) -> Self {
-        .init(
-            x: self.x + x,
-            y: self.y + y
-        )
-    }
-
-
-    /// Offsets by the given `CGPoint`.
-    ///
-    /// Equivalent to adding the corresponding components of `other`.
-    ///
-    /// - Parameter other: A point to offset `self` by.
-    /// - Returns: `self` offset by the given point.
-    @inlinable nonisolated
-    public func offset(by other: Self) -> Self {
-        .init(
-            x: self.x + other.x,
-            y: self.y + other.y
         )
     }
 
