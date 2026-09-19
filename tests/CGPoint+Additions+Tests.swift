@@ -55,4 +55,30 @@ struct CGPointAdditionsTests {
         #expect(point.multiplying(by: .zero) == .zero)
     }
 
+    @Test func hadamardByPoint() {
+        let point: CGPoint = [5, 7]
+
+        #expect(point.hadamard(by: .zero)  == .zero)
+        #expect(point.hadamard(by: [0, 1]) == [0, 7])
+        #expect(point.hadamard(by: [1, 0]) == [5, 0])
+
+        #expect(point.hadamard(by: [1, 1])   == [5, 7])
+        #expect(point.hadamard(by: [2, 3])   == [10, 21])
+        #expect(point.hadamard(by: [0.5, 2]) == [2.5, 14])
+        #expect(point.hadamard(by: [-1, -2]) == [-5, -14])
+    }
+
+    @Test func hadamardBySize() {
+        let point: CGPoint = [5, 7]
+
+        #expect(point.hadamard(bySize: .zero)    == .zero)
+        #expect(point.hadamard(bySize: [0, 1]) == [0, 7])
+        #expect(point.hadamard(bySize: [1, 0]) == [5, 0])
+
+        #expect(point.hadamard(bySize: [1, 1])   == [5, 7])
+        #expect(point.hadamard(bySize: [2, 3])   == [10, 21])
+        #expect(point.hadamard(bySize: [0.5, 2]) == [2.5, 14])
+        #expect(point.hadamard(bySize: [-1, -2]) == [-5, -14])
+    }
+
 }
