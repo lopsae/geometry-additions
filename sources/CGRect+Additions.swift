@@ -13,7 +13,7 @@ public import SwiftUI
 
 extension CGRect {
 
-    /// The point at the center of `self`.
+    /// Point at the center of `self`.
     @inlinable nonisolated
     public var centerPoint: CGPoint {
         size.toPoint
@@ -21,37 +21,37 @@ extension CGRect {
             .offset(by: origin)
     }
 
-    /// The point at the minimum _x_ and _y_ values.
+    /// Point at the minimum _x_ and _y_ values.
     @inlinable nonisolated
     public var minPoint: CGPoint {
         .init(x: minX, y: minY)
     }
 
-    /// The point at the maximum _x_ and _y_ values.
+    /// Point at the maximum _x_ and _y_ values.
     @inlinable nonisolated
     public var maxPoint: CGPoint {
         .init(x: maxX, y: maxY)
     }
 
-    /// The point at the top leading corner.
+    /// Point at the top leading corner.
     @inlinable nonisolated
     public var topLeadingPoint: CGPoint {
         .init(x: minX, y: minY)
     }
 
-    /// The point at the top trailing corner.
+    /// Point at the top trailing corner.
     @inlinable nonisolated
     public var topTrailingPoint: CGPoint {
         .init(x: maxX, y: minY)
     }
 
-    /// The point at the bottom trailing corner.
+    /// Point at the bottom trailing corner.
     @inlinable nonisolated
     public var bottomTrailingPoint: CGPoint {
         .init(x: maxX, y: maxY)
     }
 
-    /// The point at the bottom leading corner.
+    /// Point at the bottom leading corner.
     @inlinable nonisolated
     public var bottomLeadingPoint: CGPoint {
         .init(x: minX, y: maxY)
@@ -92,6 +92,8 @@ extension CGRect {
     }
 
 
+    // FIXME: Add tests.
+
     /// Centers a rectangle of the given size.
     ///
     /// - Parameter size: The size of the rectangle to center.
@@ -110,8 +112,7 @@ extension CGRect {
 
     /// Aligns the given rectangle to an edge of `self`.
     ///
-    /// Returns a copy of `other` with either `origin.x` or `origin.y` updated to align with the
-    /// specified edge of `self`.
+    /// Returns a copy of `other` with `origin` updated to align with the specified edge of `self`.
     ///
     /// - Parameters:
     ///   - other: The rectangle to align to `self`.
@@ -136,8 +137,7 @@ extension CGRect {
 
     /// Aligns `self` to an edge of the given rectangle.
     ///
-    /// Returns a copy of `self` with either `origin.x` or `origin.y` updated to align with the
-    /// specified edge of `other`.
+    /// Returns a copy of `self` with `origin` updated to align with the specified edge of `other`.
     ///
     /// - Parameters:
     ///   - edge: The edge to align to.
@@ -162,21 +162,6 @@ extension CGRect {
         self.offsetBy(dx: x, dy: y)
     }
 
-
-    /// String description using the given `FormatStyle` to format all of the rectangle's properties.
-    ///
-    /// - Parameter format: The format style for all the rectangle's properties.
-    /// - Returns: The formatted string description of `self`.
-    nonisolated
-    public func debugDescription<Style>(format: Style) -> String
-    where Style: FormatStyle, Style.FormatInput == Double, Style.FormatOutput == String {
-        let xString = origin.x.formatted(format)
-        let yString = origin.y.formatted(format)
-        let widthString  = size.width.formatted(format)
-        let heightString = size.height.formatted(format)
-        return "(\(xString), \(yString), \(widthString), \(heightString))"
-    }
-
 }
 
 
@@ -199,7 +184,7 @@ extension CGRect {
     /// Outsets all edges by the same given value.
     ///
     /// - Parameter value: The value to outset all edges.
-    /// - Returns: `self` outset by the given value in both axis.
+    /// - Returns: `self` outset by the given value in all edges.
     @inlinable nonisolated
     public func outset(by value: CGFloat) -> Self {
         inset(by: UIEdgeInsets.all(-value))
@@ -227,7 +212,7 @@ extension CGRect {
     /// Outsets all edges by the same given value.
     ///
     /// - Parameter value: The value to outset all edges.
-    /// - Returns: `self` outset by the given value in both axis.
+    /// - Returns: `self` outset by the given value in all edges.
     @inlinable nonisolated
     public func outset(by value: CGFloat) -> Self {
         self.insetBy(dx: -value, dy: -value)
@@ -236,6 +221,28 @@ extension CGRect {
 }
 
 #endif
+
+
+// MARK: - Description
+
+
+extension CGRect {
+
+    /// String description using the given `FormatStyle` to format all of the rectangle's properties.
+    ///
+    /// - Parameter format: The format style for all the rectangle's properties.
+    /// - Returns: The formatted string description of `self`.
+    nonisolated
+    public func debugDescription<Style>(format: Style) -> String
+    where Style: FormatStyle, Style.FormatInput == Double, Style.FormatOutput == String {
+        let xString = origin.x.formatted(format)
+        let yString = origin.y.formatted(format)
+        let widthString  = size.width.formatted(format)
+        let heightString = size.height.formatted(format)
+        return "(\(xString), \(yString), \(widthString), \(heightString))"
+    }
+
+}
 
 
 // MARK: - Path Interactions
