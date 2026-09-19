@@ -92,8 +92,6 @@ extension CGRect {
     }
 
 
-    // FIXME: Add tests.
-
     /// Centers a rectangle of the given size.
     ///
     /// - Parameter size: The size of the rectangle to center.
