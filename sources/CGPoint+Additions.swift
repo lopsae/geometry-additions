@@ -31,9 +31,6 @@ extension CGPoint: @retroactive ExpressibleByArrayLiteral {
 
 extension CGPoint {
 
-    // TODO: Add adding.
-
-
     /// Offsets by the given components.
     ///
     /// Equivalent to adding the given components to `self`.
