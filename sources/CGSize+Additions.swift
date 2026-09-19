@@ -32,49 +32,46 @@ extension CGSize: @retroactive ExpressibleByArrayLiteral {
 
 extension CGSize {
 
-    @inlinable nonisolated
-    init(all length: CGFloat) {
-        self.init(width: length, height: length)
-    }
+    // TODO: Fully remove all? I dont like how it reads.
 
-    
+//    @inlinable nonisolated
+//    init(all length: CGFloat) {
+//        self.init(width: length, height: length)
+//    }
+
+
     /// Creates a square size with the given length.
     /// 
     /// - Parameter length: The length for both width and height.
     @inlinable nonisolated
     public init(squareOf length: CGFloat) {
-        self.init(all: length)
+        self.init(width: length, height: length)
     }
 
-    
-    /// Creates a size with both components set to the given length.
-    ///
-    /// - Parameter length: The length for both width and height.
-    /// - Returns: A size with both components set to the same value.
-    @inlinable nonisolated
-    public static func all(_ length: CGFloat) -> Self {
-        .init(all: length)
-    }
+//    /// Creates a size with both components set to the given length.
+//    ///
+//    /// - Parameter length: The length for both width and height.
+//    /// - Returns: A size with both components set to the same value.
+//    @inlinable nonisolated
+//    public static func all(_ length: CGFloat) -> Self {
+//        .init(all: length)
+//    }
 
 
-    /// Creates a square size with both components set to the given length.
-    ///
-    /// Equivalent to ``all(_:)``.
+    /// Creates a square size with the given length.
     ///
     /// - Parameter length: The length for both width and height.
     /// - Returns: A square size with both components set to the given length.
     @inlinable nonisolated
     public static func square(of length: CGFloat) -> Self {
-        .init(all: length)
+        .init(squareOf: length)
     }
 
-
-    // TODO: replace with two separate functions without conditional.
 
     /// Sets the given components in a copy of `self`.
     ///
     /// Updates in a copy of `self` only the components for the provided parameters. Any parameters
-    /// that are omitted, or where `nil` is passed, keep the value of `self`.
+    /// that are omitted, or where `nil` is passed, keeps the value of `self`.
     ///
     /// - Parameters:
     ///   - newWidth: The new value for `width`.
@@ -113,7 +110,7 @@ extension CGSize {
         return mutableSize
     }
 
-    
+
     /// Adds the given components.
     ///
     /// - Parameters:
@@ -122,7 +119,10 @@ extension CGSize {
     /// - Returns: `self` with the given components added.
     @inlinable nonisolated
     public func adding(width: CGFloat = .zero, height: CGFloat = .zero) -> Self {
-        .init(width: self.width + width, height: self.height + height)
+        .init(
+            width:  self.width  + width,
+            height: self.height + height
+        )
     }
 
 
@@ -134,7 +134,10 @@ extension CGSize {
     /// - Returns: `self` with the given size added.
     @inlinable nonisolated
     public func adding(size other: CGSize) -> Self {
-        .init(width: width + other.width, height: height + other.height)
+        .init(
+            width:  width  + other.width,
+            height: height + other.height
+        )
     }
 
 
@@ -146,7 +149,10 @@ extension CGSize {
     /// - Returns: `self` with the given components subtracted.
     @inlinable nonisolated
     public func subtracting(width: CGFloat = .zero, height: CGFloat = .zero) -> Self {
-        .init(width: self.width - width, height: self.height - height)
+        .init(
+            width:  self.width  - width,
+            height: self.height - height
+        )
     }
 
 
@@ -158,7 +164,10 @@ extension CGSize {
     /// - Returns: `self` with the given size subtracted.
     @inlinable nonisolated
     public func subtracting(size other: CGSize) -> Self {
-        .init(width: width - other.width, height: height - other.height)
+        .init(
+            width:  width  - other.width,
+            height: height - other.height
+        )
     }
 
 
@@ -171,20 +180,20 @@ extension CGSize {
     @inlinable nonisolated
     public func enveloping(_ other: CGSize) -> Self {
         .init(
-            width: Swift.max(width, other.width),
+            width:  Swift.max(width,  other.width),
             height: Swift.max(height, other.height)
         )
     }
 
 
-    /// Updates to a size that can contain both `self` and the given size.
+    /// Updates `self` to contain both `self` and the given size.
     ///
     /// The updated size uses the largest of each component from both sizes.
     ///
     /// - Parameter other: The size to envelop.
     @inlinable nonisolated
     public mutating func envelop(_ other: CGSize) {
-        width = Swift.max(width, other.width)
+        width =  Swift.max(width,  other.width)
         height = Swift.max(height, other.height)
     }
 
@@ -252,14 +261,14 @@ extension CGSize {
     /// the result of the operands' corresponding components, multiplied together.
     ///
     /// That is, the returned _width_ component will have the value `self.width * multiplier.width`;
-    /// and its corresponding for _height_.
+    /// and for height the value `self.height * multiplier.height`.
     ///
     /// https://en.wikipedia.org/wiki/Hadamard_product_(matrices)
     ///
     /// - Parameter multiplier: The size by which to produce the Hadamard product with `self`.
     /// - Returns: The Hadamard product of `self` and `multiplier`.
     @inlinable nonisolated
-    func hadamard(bySize multiplier: CGSize) -> Self {
+    public func hadamard(bySize multiplier: CGSize) -> Self {
         .init(
             width:  width  * multiplier.width,
             height: height * multiplier.height
@@ -295,14 +304,14 @@ extension CGSize {
 
     /// The lesser of the size components.
     @inlinable nonisolated
-    public var min: CGFloat {
+    public var minComponent: CGFloat {
         Swift.min(width, height)
     }
 
 
     /// The greater of the size components.
     @inlinable nonisolated
-    public var max: CGFloat {
+    public var maxComponent: CGFloat {
         Swift.max(width, height)
     }
 
@@ -326,7 +335,7 @@ extension CGSize {
     }
 
 
-    /// Centers a rectangle in the given size.
+    /// Centers a rectangle of size `self` in the given size.
     ///
     /// Produces a rectangle the size of `self` centered in a rectangle of size `other` with origin
     /// at the zero value point.
@@ -340,7 +349,7 @@ extension CGSize {
     }
 
 
-    /// Centers a rectangle in the given rectangle.
+    /// Centers a rectangle of size `self` in the given rectangle.
     ///
     /// Produces a rectangle of size of `self` centered in the given rectangle.
     ///
