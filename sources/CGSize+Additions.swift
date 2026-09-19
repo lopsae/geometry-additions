@@ -71,7 +71,7 @@ extension CGSize {
     /// Sets the given components in a copy of `self`.
     ///
     /// Updates in a copy of `self` only the components for the provided parameters. Any parameters
-    /// that are omitted, or where `nil` is passed, keeps the value of `self`.
+    /// that are omitted, or where `nil` is passed, keep the value of `self`.
     ///
     /// - Parameters:
     ///   - newWidth: The new value for `width`.
