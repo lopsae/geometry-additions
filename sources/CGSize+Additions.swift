@@ -268,7 +268,7 @@ extension CGSize {
     /// - Parameter multiplier: The size by which to produce the Hadamard product with `self`.
     /// - Returns: The Hadamard product of `self` and `multiplier`.
     @inlinable nonisolated
-    public func hadamard(bySize multiplier: CGSize) -> Self {
+    public func hadamard(by multiplier: CGSize) -> Self {
         .init(
             width:  width  * multiplier.width,
             height: height * multiplier.height
@@ -276,7 +276,10 @@ extension CGSize {
     }
 
 
-    // TODO: Add tests, include scaling to fill zero sizes.
+    // FIXME: Add tests, include scaling to fill zero sizes.
+
+
+    // FIXME: Add note about zero component behaviour.
 
     /// Scales to fill the given size, while keeping the original aspect ratio.
     ///
