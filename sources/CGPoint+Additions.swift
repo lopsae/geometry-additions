@@ -7,65 +7,29 @@
 public import CoreFoundation
 
 
+extension CGPoint: @retroactive ExpressibleByArrayLiteral {
+
+    /// Creates a point from a two-element array literal.
+    ///
+    /// Uses the first element of the array as the _x_ component, and the second as _y_.
+    ///
+    /// - Parameter elements: A two-element array literal containing the point components.
+    ///
+    /// - Note:
+    /// The array literal **must** contain two elements; otherwise the call will trigger a
+    /// precondition failure.
+    public init(arrayLiteral elements: CGFloat...) {
+        precondition(
+            elements.count == 2,
+            "CGPoint expressed as an array literal must have exactly 2 elements: \(elements)"
+        )
+        self.init(x: elements[0], y: elements[1])
+    }
+
+}
+
+
 extension CGPoint {
-
-    @inlinable nonisolated
-    func adding(size: CGSize) -> Self {
-        .init(
-            x: self.x + size.width,
-            y: self.y + size.height
-        )
-    }
-
-    /// Multiplies both components by a given multiplier.
-    ///
-    /// - Parameter multiplier: The value to multiply both components by.
-    /// - Returns: `self` with both components multiplied by `multiplier`.
-    @inlinable nonisolated
-    public func multiplying(by multiplier: CGFloat) -> Self {
-        .init(
-            x: self.x * multiplier,
-            y: self.y * multiplier
-        )
-    }
-
-
-    /// Produces the Hadamard product with the given point.
-    ///
-    /// The Hadamard product (or element-wise product) produces a point where each component is
-    /// the result of the operands' corresponding components, multiplied together.
-    ///
-    /// That is, the returned _x_ component will have the value `self.x * multiplier.x`; and its
-    /// corresponding for _y_.
-    ///
-    /// https://en.wikipedia.org/wiki/Hadamard_product_(matrices)
-    ///
-    /// - Parameter multiplier: The point by which to produce the Hadamard product with `self`.
-    /// - Returns: The Hadamard product of `self` and `multiplier`.
-    @inlinable nonisolated
-    func hadamard(by multiplier: Self) -> Self {
-        .init(
-            x: self.x * multiplier.x,
-            y: self.y * multiplier.y
-        )
-    }
-
-
-    /// Returns the Hadamard product of `self` and `multiplier`, where `x` is multiplied by
-    /// `width`, and `y` by `height`.
-    ///
-    /// https://en.wikipedia.org/wiki/Hadamard_product_(matrices)
-    @inlinable nonisolated
-    func hadamard(bySize multiplier: CGSize) -> Self {
-        .init(
-            x: self.x * multiplier.width,
-            y: self.y * multiplier.height
-        )
-    }
-
-
-    // TODO: Add adding.
-
 
     /// Offsets by the given components.
     ///
@@ -98,27 +62,77 @@ extension CGPoint {
         )
     }
 
-}
 
-
-extension CGPoint: @retroactive ExpressibleByArrayLiteral {
-
-    
-    /// Creates a point from a two-element array literal.
+    /// Offsets by the given `CGSize`.
     ///
-    /// Uses the first element of the array as the _x_ component, and the second as _y_.
+    /// Equivalent to adding the corresponding axial components: _x_ is offset by the size's width,
+    /// and _y_ by its height.
     ///
-    /// - Parameter elements: A two-element array literal containing the point components.
-    ///
-    /// - Note:
-    /// The array literal **must** contain two elements; otherwise the call will trigger a
-    /// precondition failure.
-    public init(arrayLiteral elements: CGFloat...) {
-        precondition(
-            elements.count == 2,
-            "CGPoint expressed as an array literal must have exactly 2 elements: \(elements)"
+    /// - Parameter size: The size to offset `self` by.
+    /// - Returns: `self` offset by the given size.
+    @inlinable nonisolated
+    public func offset(bySize size: CGSize) -> Self {
+        .init(
+            x: self.x + size.width,
+            y: self.y + size.height
         )
-        self.init(x: elements[0], y: elements[1])
+    }
+
+
+    /// Multiplies both components by a given multiplier.
+    ///
+    /// - Parameter multiplier: The value to multiply both components by.
+    /// - Returns: `self` with both components multiplied by `multiplier`.
+    @inlinable nonisolated
+    public func multiplying(by multiplier: CGFloat) -> Self {
+        .init(
+            x: self.x * multiplier,
+            y: self.y * multiplier
+        )
+    }
+
+
+    /// Produces the Hadamard product with the given point.
+    ///
+    /// The Hadamard product (or element-wise product) produces a point where each component is
+    /// the result of the operands' corresponding components, multiplied together.
+    ///
+    /// That is, the returned _x_ component will have the value `self.x * multiplier.x`; and for
+    /// _y_ the value `self.y * multiplier.y`.
+    ///
+    /// See [Hadamard product](https://en.wikipedia.org/wiki/Hadamard_product_(matrices)) in
+    /// Wikipedia.
+    ///
+    /// - Parameter multiplier: The point by which to produce the Hadamard product with `self`.
+    /// - Returns: The Hadamard product of `self` and `multiplier`.
+    @inlinable nonisolated
+    public func hadamard(by multiplier: Self) -> Self {
+        .init(
+            x: self.x * multiplier.x,
+            y: self.y * multiplier.y
+        )
+    }
+
+
+    /// Produces the Hadamard product with the given size.
+    ///
+    /// The Hadamard product (or element-wise product) produces a point where each component is
+    /// the result of the operands' corresponding axial components, multiplied together.
+    ///
+    /// That is, the returned _x_ component will have the value `self.x * multiplier.width`; and for
+    /// _y_ the value `self.y * multiplier.height`.
+    ///
+    /// See [Hadamard product](https://en.wikipedia.org/wiki/Hadamard_product_(matrices)) in
+    /// Wikipedia.
+    ///
+    /// - Parameter multiplier: The size by which to produce the Hadamard product with `self`.
+    /// - Returns: The Hadamard product of `self` and `multiplier`.
+    @inlinable nonisolated
+    public func hadamard(bySize multiplier: CGSize) -> Self {
+        .init(
+            x: self.x * multiplier.width,
+            y: self.y * multiplier.height
+        )
     }
 
 }

@@ -8,56 +8,75 @@ public import CoreFoundation
 public import SwiftUI
 
 
+extension CGSize: @retroactive ExpressibleByArrayLiteral {
+
+    /// Creates a size from a two-element array literal.
+    ///
+    /// Uses the first element of the array as the _width_ component, and the second as _height_.
+    ///
+    /// - Parameter elements: A two-element array literal containing the size components.
+    ///
+    /// - Note:
+    /// The array literal **must** contain two elements; otherwise the call will trigger a
+    /// precondition failure.
+    public init(arrayLiteral elements: CGFloat...) {
+        precondition(
+            elements.count == 2,
+            "CGSize expressed as an array literal must have exactly 2 elements: \(elements)"
+        )
+        self.init(width: elements[0], height: elements[1])
+    }
+
+}
+
+
 extension CGSize {
 
+    // TODO: Fully remove all? I don't like how it reads.
+
+//    @inlinable nonisolated
+//    init(all length: CGFloat) {
+//        self.init(width: length, height: length)
+//    }
+
+
+    /// Creates a square size with the given length.
+    ///
+    /// - Parameter length: The length for both _width_ and _height_.
     @inlinable nonisolated
-    init(all length: CGFloat) {
+    public init(squareOf length: CGFloat) {
         self.init(width: length, height: length)
     }
 
-    
+//    /// Creates a size with both components set to the given length.
+//    ///
+//    /// - Parameter length: The length for both width and height.
+//    /// - Returns: A size with both components set to the same value.
+//    @inlinable nonisolated
+//    public static func all(_ length: CGFloat) -> Self {
+//        .init(all: length)
+//    }
+
+
     /// Creates a square size with the given length.
-    /// 
-    /// - Parameter length: The length for both width and height.
-    @inlinable nonisolated
-    public init(squareOf length: CGFloat) {
-        self.init(all: length)
-    }
-
-    
-    /// Creates a size with both components set to the given length.
     ///
-    /// - Parameter length: The length for both width and height.
-    /// - Returns: A size with both components set to the same value.
-    @inlinable nonisolated
-    public static func all(_ length: CGFloat) -> Self {
-        .init(all: length)
-    }
-
-
-    /// Creates a square size with both components set to the given length.
-    ///
-    /// Equivalent to ``all(_:)``.
-    ///
-    /// - Parameter length: The length for both width and height.
+    /// - Parameter length: The length for both _width_ and _height_.
     /// - Returns: A square size with both components set to the given length.
     @inlinable nonisolated
     public static func square(of length: CGFloat) -> Self {
-        .init(all: length)
+        .init(squareOf: length)
     }
 
 
-    // TODO: replace with two separate functions without conditional.
-
-    /// Sets the given components in a copy of `self`.
+    /// Sets the given components.
     ///
-    /// Updates in a copy of `self` only the components for the provided parameters. Any parameters
-    /// that are omitted, or where `nil` is passed, keep the value of `self`.
+    /// Updates only the components for the provided parameters. Any parameters that are omitted,
+    /// or where `nil` is passed, keep the value of `self`.
     ///
     /// - Parameters:
-    ///   - newWidth: The new value for `width`.
-    ///   - newHeight: The new value for `height`.
-    /// - Returns: A copy of `self` with the given components updated.
+    ///   - newWidth: The new value for _width_.
+    ///   - newHeight: The new value for _height_.
+    /// - Returns: `self` with the given components updated.
     @inlinable nonisolated
     public func setting(
         width newWidth: CGFloat? = nil,
@@ -72,7 +91,7 @@ extension CGSize {
 
     /// Sets the component along an axis to the given length.
     ///
-    /// Updates `width` when the `horizontal` axis is provided, and `height` for the `vertical` axis.
+    /// Updates _width_ when the `horizontal` axis is provided, and _height_ for the `vertical` axis.
     ///
     /// - Parameters:
     ///   - length: The length for the component along the given axis.
@@ -91,16 +110,19 @@ extension CGSize {
         return mutableSize
     }
 
-    
+
     /// Adds the given components.
     ///
     /// - Parameters:
-    ///   - width: The value to add to width; defaults to zero.
-    ///   - height: The value to add to height; defaults to zero.
+    ///   - width: The value to add to _width_; defaults to zero.
+    ///   - height: The value to add to _height_; defaults to zero.
     /// - Returns: `self` with the given components added.
     @inlinable nonisolated
     public func adding(width: CGFloat = .zero, height: CGFloat = .zero) -> Self {
-        .init(width: self.width + width, height: self.height + height)
+        .init(
+            width:  self.width  + width,
+            height: self.height + height
+        )
     }
 
 
@@ -112,31 +134,40 @@ extension CGSize {
     /// - Returns: `self` with the given size added.
     @inlinable nonisolated
     public func adding(size other: CGSize) -> Self {
-        .init(width: width + other.width, height: height + other.height)
+        .init(
+            width:  width  + other.width,
+            height: height + other.height
+        )
     }
 
 
     /// Subtracts the given components.
     ///
     /// - Parameters:
-    ///   - width: The value to subtract from width; defaults to zero.
-    ///   - height: The value to subtract from height; defaults to zero.
+    ///   - width: The value to subtract from _width_; defaults to zero.
+    ///   - height: The value to subtract from _height_; defaults to zero.
     /// - Returns: `self` with the given components subtracted.
     @inlinable nonisolated
     public func subtracting(width: CGFloat = .zero, height: CGFloat = .zero) -> Self {
-        .init(width: self.width - width, height: self.height - height)
+        .init(
+            width:  self.width  - width,
+            height: self.height - height
+        )
     }
 
 
     /// Subtracts the given size.
     ///
-    /// Subtracts to each component the corresponding component of `other`.
+    /// Subtracts from each component the corresponding component of `other`.
     ///
     /// - Parameter other: The size to subtract.
     /// - Returns: `self` with the given size subtracted.
     @inlinable nonisolated
     public func subtracting(size other: CGSize) -> Self {
-        .init(width: width - other.width, height: height - other.height)
+        .init(
+            width:  width  - other.width,
+            height: height - other.height
+        )
     }
 
 
@@ -149,27 +180,27 @@ extension CGSize {
     @inlinable nonisolated
     public func enveloping(_ other: CGSize) -> Self {
         .init(
-            width: Swift.max(width, other.width),
+            width:  Swift.max(width,  other.width),
             height: Swift.max(height, other.height)
         )
     }
 
 
-    /// Updates to a size that can contain both `self` and the given size.
+    /// Updates `self` to contain both `self` and the given size.
     ///
     /// The updated size uses the largest of each component from both sizes.
     ///
     /// - Parameter other: The size to envelop.
     @inlinable nonisolated
     public mutating func envelop(_ other: CGSize) {
-        width = Swift.max(width, other.width)
+        width =  Swift.max(width,  other.width)
         height = Swift.max(height, other.height)
     }
 
-    
+
     /// Transposes the size components.
     ///
-    /// Exchanges `width` and `height` for each other.
+    /// Exchanges _width_ and _height_ for each other.
     @inlinable nonisolated
     public var transposed: Self {
         .init(width: height, height: width)
@@ -204,7 +235,7 @@ extension CGSize {
 
     /// Multiplies the component along an axis by the given multiplier.
     ///
-    /// Updates `width` when the `horizontal` axis is provided, and `height` for the `vertical` axis.
+    /// Updates _width_ when the `horizontal` axis is provided, and _height_ for the `vertical` axis.
     ///
     /// - Parameters:
     ///   - multiplier: The value to multiply a component by.
@@ -230,14 +261,15 @@ extension CGSize {
     /// the result of the operands' corresponding components, multiplied together.
     ///
     /// That is, the returned _width_ component will have the value `self.width * multiplier.width`;
-    /// and its corresponding for _height_.
+    /// and for _height_ the value `self.height * multiplier.height`.
     ///
-    /// https://en.wikipedia.org/wiki/Hadamard_product_(matrices)
+    /// See [Hadamard product](https://en.wikipedia.org/wiki/Hadamard_product_(matrices)) in
+    /// Wikipedia.
     ///
     /// - Parameter multiplier: The size by which to produce the Hadamard product with `self`.
     /// - Returns: The Hadamard product of `self` and `multiplier`.
     @inlinable nonisolated
-    func hadamard(bySize multiplier: CGSize) -> Self {
+    public func hadamard(by multiplier: CGSize) -> Self {
         .init(
             width:  width  * multiplier.width,
             height: height * multiplier.height
@@ -245,12 +277,14 @@ extension CGSize {
     }
 
 
-    // TODO: Add tests, include scaling to fill zero sizes.
-
     /// Scales to fill the given size, while keeping the original aspect ratio.
     ///
     /// The resulting size will have at least one component match with the given size, while the
     /// other will be larger.
+    ///
+    /// If any of the components has a zero value, the resulting size will retain a zero value for
+    /// that component. The other component, if different from zero, will be updated to match the
+    /// corresponding component in `size`.
     ///
     /// - Parameter size: The size to fill.
     /// - Returns: `self` scaled to fill the given size, while keeping its aspect ratio.
@@ -273,21 +307,21 @@ extension CGSize {
 
     /// The lesser of the size components.
     @inlinable nonisolated
-    public var min: CGFloat {
+    public var minComponent: CGFloat {
         Swift.min(width, height)
     }
 
 
     /// The greater of the size components.
     @inlinable nonisolated
-    public var max: CGFloat {
+    public var maxComponent: CGFloat {
         Swift.max(width, height)
     }
 
 
-    /// A point with matching component values.
+    /// Point with matching component values.
     ///
-    /// The resulting point uses `width` as its _x_ component, and `height` as _y_.
+    /// The resulting point uses _width_ as its _x_ component, and _height_ as _y_.
     @inlinable nonisolated
     public var toPoint: CGPoint {
         .init(x: width, y: height)
@@ -296,7 +330,7 @@ extension CGSize {
 
     /// Rectangle with `self` as size and the given origin point.
     ///
-    /// - Parameter origin: The origin point for the resulting rectangle; defaults to a zero value point.
+    /// - Parameter origin: The origin point for the resulting rectangle; defaults to `.zero`.
     /// - Returns: A rectangle with `self` as size and the given origin point.
     @inlinable nonisolated
     public func rect(origin: CGPoint = .zero) -> CGRect {
@@ -304,10 +338,10 @@ extension CGSize {
     }
 
 
-    /// Centers a rectangle in the given size.
+    /// Centers a rectangle of size `self` in the given size.
     ///
     /// Produces a rectangle the size of `self` centered in a rectangle of size `other` with origin
-    /// at the zero value point.
+    /// at `.zero`.
     ///
     /// - Parameter other: The size to center `self` in.
     /// - Returns: A rectangle of size `self` centered in the given size.
@@ -318,37 +352,15 @@ extension CGSize {
     }
 
 
-    /// Centers a rectangle in the given rectangle.
+    /// Centers a rectangle of size `self` in the given rectangle.
     ///
-    /// Produces a rectangle of size of `self` centered in the given rectangle.
+    /// Produces a rectangle the size of `self` centered in the given rectangle.
     ///
     /// - Parameter rect: The rectangle to center `self` in.
     /// - Returns: A rectangle of size `self` centered in the given rectangle.
     @inlinable nonisolated
     public func centered(in rect: CGRect) -> CGRect {
         rect.center(size: self)
-    }
-
-}
-
-
-extension CGSize: @retroactive ExpressibleByArrayLiteral {
-
-    /// Creates a size from a two-element array literal.
-    ///
-    /// Uses the first element of the array as the _width_ component, and the second as _height_.
-    ///
-    /// - Parameter elements: A two-element array literal containing the size components.
-    ///
-    /// - Note:
-    /// The array literal **must** contain two elements; otherwise the call will trigger a
-    /// precondition failure.
-    public init(arrayLiteral elements: CGFloat...) {
-        precondition(
-            elements.count == 2,
-            "CGSize expressed as an array literal must have exactly 2 elements: \(elements)"
-        )
-        self.init(width: elements[0], height: elements[1])
     }
 
 }
