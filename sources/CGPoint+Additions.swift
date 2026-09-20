@@ -71,10 +71,10 @@ extension CGPoint {
     /// - Parameter size: The size to offset `self` by.
     /// - Returns: `self` offset by the given size.
     @inlinable nonisolated
-    public func adding(size: CGSize) -> Self {
+    public func offset(bySize: CGSize) -> Self {
         .init(
-            x: self.x + size.width,
-            y: self.y + size.height
+            x: self.x + bySize.width,
+            y: self.y + bySize.height
         )
     }
 
@@ -100,7 +100,8 @@ extension CGPoint {
     /// That is, the returned _x_ component will have the value `self.x * multiplier.x`; and its
     /// corresponding for _y_.
     ///
-    /// https://en.wikipedia.org/wiki/Hadamard_product_(matrices)
+    /// See [Hadamart product](https://en.wikipedia.org/wiki/Hadamard_product_(matrices)) in
+    /// Wikipedia.
     ///
     /// - Parameter multiplier: The point by which to produce the Hadamard product with `self`.
     /// - Returns: The Hadamard product of `self` and `multiplier`.
@@ -120,7 +121,8 @@ extension CGPoint {
     /// That is, the returned _x_ component will have the value `self.x * multiplier.width`; and for
     /// _y_ the value `self.y * multiplier.height`.
     ///
-    /// https://en.wikipedia.org/wiki/Hadamard_product_(matrices)
+    /// See [Hadamart product](https://en.wikipedia.org/wiki/Hadamard_product_(matrices)) in
+    /// Wikipedia.
     ///
     /// - Parameter multiplier: The size by which to produce the Hadamard product with `self`.
     /// - Returns: The Hadamard product of `self` and `multiplier`.

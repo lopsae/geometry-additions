@@ -75,7 +75,7 @@ extension CGRect {
     ///   - newY: The new value for `origin.y`.
     ///   - newWidth: The new value for `size.width`.
     ///   - newHeight: The new value for `size.height`.
-    /// - Returns: A copy of `self` with the given properties updated.
+    /// - Returns: `self` with the given properties updated.
     @inlinable nonisolated
     public func setting(
         x newX: CGFloat? = nil,

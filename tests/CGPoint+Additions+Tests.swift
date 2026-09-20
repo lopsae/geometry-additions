@@ -37,11 +37,11 @@ struct CGPointAdditionsTests {
         #expect(point.offset(by: [-8, -9]) == [-3, -2])
     }
 
-    @Test func addingSize() {
+    @Test func offsetBySize() {
         let point: CGPoint = [5, 7]
 
-        #expect(point.adding(size: .zero) == [5, 7])
-        #expect(point.adding(size: [6, 8]) == [11, 15])
+        #expect(point.offset(bySize: .zero) == [5, 7])
+        #expect(point.offset(bySize: [6, 8]) == [11, 15])
     }
 
 

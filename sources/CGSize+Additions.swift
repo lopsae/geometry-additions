@@ -76,7 +76,7 @@ extension CGSize {
     /// - Parameters:
     ///   - newWidth: The new value for `width`.
     ///   - newHeight: The new value for `height`.
-    /// - Returns: A copy of `self` with the given components updated.
+    /// - Returns: `self` with the given components updated.
     @inlinable nonisolated
     public func setting(
         width newWidth: CGFloat? = nil,
@@ -200,7 +200,7 @@ extension CGSize {
     
     /// Transposes the size components.
     ///
-    /// Exchanges `width` and `height` for each other.
+    /// Exchanges width and height for each other.
     @inlinable nonisolated
     public var transposed: Self {
         .init(width: height, height: width)
@@ -261,9 +261,10 @@ extension CGSize {
     /// the result of the operands' corresponding components, multiplied together.
     ///
     /// That is, the returned _width_ component will have the value `self.width * multiplier.width`;
-    /// and for height the value `self.height * multiplier.height`.
+    /// and for _height_ the value `self.height * multiplier.height`.
     ///
-    /// https://en.wikipedia.org/wiki/Hadamard_product_(matrices)
+    /// See [Hadamart product](https://en.wikipedia.org/wiki/Hadamard_product_(matrices)) in
+    /// Wikipedia.
     ///
     /// - Parameter multiplier: The size by which to produce the Hadamard product with `self`.
     /// - Returns: The Hadamard product of `self` and `multiplier`.
@@ -276,15 +277,14 @@ extension CGSize {
     }
 
 
-    // FIXME: Add tests, include scaling to fill zero sizes.
-
-
-    // FIXME: Add note about zero component behaviour.
-
     /// Scales to fill the given size, while keeping the original aspect ratio.
     ///
     /// The resulting size will have at least one component match with the given size, while the
     /// other will be larger.
+    ///
+    /// If any of the components has a zero value, the resulting size will retain a zero value for
+    /// that component. The other component, if different from zero, will be updated to match the
+    /// corresponding component in `size`.
     ///
     /// - Parameter size: The size to fill.
     /// - Returns: `self` scaled to fill the given size, while keeping its aspect ratio.
@@ -319,9 +319,9 @@ extension CGSize {
     }
 
 
-    /// A point with matching component values.
+    /// Point with matching component values.
     ///
-    /// The resulting point uses `width` as its _x_ component, and `height` as _y_.
+    /// The resulting point uses _width_ as its _x_ component, and _height_ as _y_.
     @inlinable nonisolated
     public var toPoint: CGPoint {
         .init(x: width, y: height)
@@ -330,7 +330,7 @@ extension CGSize {
 
     /// Rectangle with `self` as size and the given origin point.
     ///
-    /// - Parameter origin: The origin point for the resulting rectangle; defaults to a zero value point.
+    /// - Parameter origin: The origin point for the resulting rectangle; defaults to `.zero`.
     /// - Returns: A rectangle with `self` as size and the given origin point.
     @inlinable nonisolated
     public func rect(origin: CGPoint = .zero) -> CGRect {

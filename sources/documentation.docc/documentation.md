@@ -18,8 +18,3 @@ for code that lives in `@ContentBuilder` closures.
 + ``CoreFoundation/CGPoint``
 + ``CoreFoundation/CGSize``
 + ``CoreFoundation/CGRect``
-
-
-### Edges
-
-+ ``SwiftUICore/EdgeInsets``
