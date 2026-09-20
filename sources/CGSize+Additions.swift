@@ -32,7 +32,7 @@ extension CGSize: @retroactive ExpressibleByArrayLiteral {
 
 extension CGSize {
 
-    // TODO: Fully remove all? I dont like how it reads.
+    // TODO: Fully remove all? I don't like how it reads.
 
 //    @inlinable nonisolated
 //    init(all length: CGFloat) {
@@ -41,8 +41,8 @@ extension CGSize {
 
 
     /// Creates a square size with the given length.
-    /// 
-    /// - Parameter length: The length for both width and height.
+    ///
+    /// - Parameter length: The length for both _width_ and _height_.
     @inlinable nonisolated
     public init(squareOf length: CGFloat) {
         self.init(width: length, height: length)
@@ -60,7 +60,7 @@ extension CGSize {
 
     /// Creates a square size with the given length.
     ///
-    /// - Parameter length: The length for both width and height.
+    /// - Parameter length: The length for both _width_ and _height_.
     /// - Returns: A square size with both components set to the given length.
     @inlinable nonisolated
     public static func square(of length: CGFloat) -> Self {
@@ -68,14 +68,14 @@ extension CGSize {
     }
 
 
-    /// Sets the given components in a copy of `self`.
+    /// Sets the given components.
     ///
-    /// Updates in a copy of `self` only the components for the provided parameters. Any parameters
-    /// that are omitted, or where `nil` is passed, keep the value of `self`.
+    /// Updates only the components for the provided parameters. Any parameters that are omitted,
+    /// or where `nil` is passed, keep the value of `self`.
     ///
     /// - Parameters:
-    ///   - newWidth: The new value for `width`.
-    ///   - newHeight: The new value for `height`.
+    ///   - newWidth: The new value for _width_.
+    ///   - newHeight: The new value for _height_.
     /// - Returns: `self` with the given components updated.
     @inlinable nonisolated
     public func setting(
@@ -91,7 +91,7 @@ extension CGSize {
 
     /// Sets the component along an axis to the given length.
     ///
-    /// Updates `width` when the `horizontal` axis is provided, and `height` for the `vertical` axis.
+    /// Updates _width_ when the `horizontal` axis is provided, and _height_ for the `vertical` axis.
     ///
     /// - Parameters:
     ///   - length: The length for the component along the given axis.
@@ -114,8 +114,8 @@ extension CGSize {
     /// Adds the given components.
     ///
     /// - Parameters:
-    ///   - width: The value to add to width; defaults to zero.
-    ///   - height: The value to add to height; defaults to zero.
+    ///   - width: The value to add to _width_; defaults to zero.
+    ///   - height: The value to add to _height_; defaults to zero.
     /// - Returns: `self` with the given components added.
     @inlinable nonisolated
     public func adding(width: CGFloat = .zero, height: CGFloat = .zero) -> Self {
@@ -144,8 +144,8 @@ extension CGSize {
     /// Subtracts the given components.
     ///
     /// - Parameters:
-    ///   - width: The value to subtract from width; defaults to zero.
-    ///   - height: The value to subtract from height; defaults to zero.
+    ///   - width: The value to subtract from _width_; defaults to zero.
+    ///   - height: The value to subtract from _height_; defaults to zero.
     /// - Returns: `self` with the given components subtracted.
     @inlinable nonisolated
     public func subtracting(width: CGFloat = .zero, height: CGFloat = .zero) -> Self {
@@ -158,7 +158,7 @@ extension CGSize {
 
     /// Subtracts the given size.
     ///
-    /// Subtracts to each component the corresponding component of `other`.
+    /// Subtracts from each component the corresponding component of `other`.
     ///
     /// - Parameter other: The size to subtract.
     /// - Returns: `self` with the given size subtracted.
@@ -197,10 +197,10 @@ extension CGSize {
         height = Swift.max(height, other.height)
     }
 
-    
+
     /// Transposes the size components.
     ///
-    /// Exchanges width and height for each other.
+    /// Exchanges _width_ and _height_ for each other.
     @inlinable nonisolated
     public var transposed: Self {
         .init(width: height, height: width)
@@ -235,7 +235,7 @@ extension CGSize {
 
     /// Multiplies the component along an axis by the given multiplier.
     ///
-    /// Updates `width` when the `horizontal` axis is provided, and `height` for the `vertical` axis.
+    /// Updates _width_ when the `horizontal` axis is provided, and _height_ for the `vertical` axis.
     ///
     /// - Parameters:
     ///   - multiplier: The value to multiply a component by.
@@ -263,7 +263,7 @@ extension CGSize {
     /// That is, the returned _width_ component will have the value `self.width * multiplier.width`;
     /// and for _height_ the value `self.height * multiplier.height`.
     ///
-    /// See [Hadamart product](https://en.wikipedia.org/wiki/Hadamard_product_(matrices)) in
+    /// See [Hadamard product](https://en.wikipedia.org/wiki/Hadamard_product_(matrices)) in
     /// Wikipedia.
     ///
     /// - Parameter multiplier: The size by which to produce the Hadamard product with `self`.
@@ -341,7 +341,7 @@ extension CGSize {
     /// Centers a rectangle of size `self` in the given size.
     ///
     /// Produces a rectangle the size of `self` centered in a rectangle of size `other` with origin
-    /// at the zero value point.
+    /// at `.zero`.
     ///
     /// - Parameter other: The size to center `self` in.
     /// - Returns: A rectangle of size `self` centered in the given size.
@@ -354,7 +354,7 @@ extension CGSize {
 
     /// Centers a rectangle of size `self` in the given rectangle.
     ///
-    /// Produces a rectangle of size of `self` centered in the given rectangle.
+    /// Produces a rectangle the size of `self` centered in the given rectangle.
     ///
     /// - Parameter rect: The rectangle to center `self` in.
     /// - Returns: A rectangle of size `self` centered in the given rectangle.
