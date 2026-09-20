@@ -8,19 +8,74 @@ public import CoreFoundation
 public import SwiftUI
 
 
+// MARK: - Properties
+
+
 extension CGRect {
 
-    /// Sets the given properties in a copy of `self`.
+    /// Point at the center of `self`.
+    @inlinable nonisolated
+    public var centerPoint: CGPoint {
+        size.toPoint
+            .multiplying(by: 0.5)
+            .offset(by: origin)
+    }
+
+    /// Point at the minimum _x_ and _y_ values.
+    @inlinable nonisolated
+    public var minPoint: CGPoint {
+        .init(x: minX, y: minY)
+    }
+
+    /// Point at the maximum _x_ and _y_ values.
+    @inlinable nonisolated
+    public var maxPoint: CGPoint {
+        .init(x: maxX, y: maxY)
+    }
+
+    /// Point at the top leading corner.
+    @inlinable nonisolated
+    public var topLeadingPoint: CGPoint {
+        .init(x: minX, y: minY)
+    }
+
+    /// Point at the top trailing corner.
+    @inlinable nonisolated
+    public var topTrailingPoint: CGPoint {
+        .init(x: maxX, y: minY)
+    }
+
+    /// Point at the bottom trailing corner.
+    @inlinable nonisolated
+    public var bottomTrailingPoint: CGPoint {
+        .init(x: maxX, y: maxY)
+    }
+
+    /// Point at the bottom leading corner.
+    @inlinable nonisolated
+    public var bottomLeadingPoint: CGPoint {
+        .init(x: minX, y: maxY)
+    }
+
+}
+
+
+// MARK: - Operations
+
+
+extension CGRect {
+
+    /// Sets the given properties.
     ///
-    /// Updates in a copy of `self` only the properties for the provided parameters. Any parameters
-    /// that are omitted, or where `nil` is passed, keep the value of `self`.
+    /// Updates only the properties for the provided parameters. Any parameters that are omitted,
+    /// or where `nil` is passed, keep the value of `self`.
     ///
     /// - Parameters:
     ///   - newX: The new value for `origin.x`.
     ///   - newY: The new value for `origin.y`.
     ///   - newWidth: The new value for `size.width`.
     ///   - newHeight: The new value for `size.height`.
-    /// - Returns: A copy of `self` with the given properties updated.
+    /// - Returns: `self` with the given properties updated.
     @inlinable nonisolated
     public func setting(
         x newX: CGFloat? = nil,
@@ -34,15 +89,6 @@ extension CGRect {
         if let newWidth  { mutableRect.size.width  = newWidth }
         if let newHeight { mutableRect.size.height = newHeight }
         return mutableRect
-    }
-
-
-    /// The point at the center of `self`.
-    @inlinable nonisolated
-    public var center: CGPoint {
-        size.toPoint
-            .multiplying(by: 0.5)
-            .offset(by: origin)
     }
 
 
@@ -64,8 +110,7 @@ extension CGRect {
 
     /// Aligns the given rectangle to an edge of `self`.
     ///
-    /// Returns a copy of `other` with either `origin.x` or `origin.y` updated to align with the
-    /// specified edge of `self`.
+    /// Returns a copy of `other` with `origin` updated to align with the specified edge of `self`.
     ///
     /// - Parameters:
     ///   - other: The rectangle to align to `self`.
@@ -90,8 +135,7 @@ extension CGRect {
 
     /// Aligns `self` to an edge of the given rectangle.
     ///
-    /// Returns a copy of `self` with either `origin.x` or `origin.y` updated to align with the
-    /// specified edge of `other`.
+    /// Returns a copy of `self` with `origin` updated to align with the specified edge of `other`.
     ///
     /// - Parameters:
     ///   - edge: The edge to align to.
@@ -116,6 +160,71 @@ extension CGRect {
         self.offsetBy(dx: x, dy: y)
     }
 
+}
+
+
+#if canImport(UIKit)
+
+import UIKit
+
+extension CGRect {
+
+    /// Insets all edges by the same given value.
+    ///
+    /// - Parameter value: The value to inset all edges by.
+    /// - Returns: `self` inset by the given value on all edges.
+    @inlinable nonisolated
+    public func inset(by value: CGFloat) -> Self {
+        inset(by: UIEdgeInsets.all(value))
+    }
+
+
+    /// Outsets all edges by the same given value.
+    ///
+    /// - Parameter value: The value to outset all edges by.
+    /// - Returns: `self` outset by the given value on all edges.
+    @inlinable nonisolated
+    public func outset(by value: CGFloat) -> Self {
+        inset(by: UIEdgeInsets.all(-value))
+    }
+
+}
+
+#endif
+
+
+#if os(macOS)
+
+extension CGRect {
+
+    /// Insets all edges by the same given value.
+    ///
+    /// - Parameter value: The value to inset all edges by.
+    /// - Returns: `self` inset by the given value on all edges.
+    @inlinable nonisolated
+    public func inset(by value: CGFloat) -> Self {
+        self.insetBy(dx: value, dy: value)
+    }
+
+
+    /// Outsets all edges by the same given value.
+    ///
+    /// - Parameter value: The value to outset all edges by.
+    /// - Returns: `self` outset by the given value on all edges.
+    @inlinable nonisolated
+    public func outset(by value: CGFloat) -> Self {
+        self.insetBy(dx: -value, dy: -value)
+    }
+
+}
+
+#endif
+
+
+// MARK: - Description
+
+
+extension CGRect {
 
     /// String description using the given `FormatStyle` to format all of the rectangle's properties.
     ///
@@ -134,61 +243,16 @@ extension CGRect {
 }
 
 
-#if canImport(UIKit)
-
-import UIKit
-
-extension CGRect {
-
-    /// Insets in both axis by the same given value.
-    ///
-    /// - Parameter value: The value to inset in both axis.
-    /// - Returns: `self` inset by the given value in both axis.
-    @inlinable nonisolated
-    public func inset(by value: CGFloat) -> Self {
-        inset(by: UIEdgeInsets.all(value))
-    }
-
-
-    /// Outsets in both axis by the same given value.
-    ///
-    /// - Parameter value: The value to outset in both axis.
-    /// - Returns: `self` outset by the given value in both axis.
-    @inlinable nonisolated
-    public func outset(by value: CGFloat) -> Self {
-        inset(by: UIEdgeInsets.all(-value))
-    }
-
-}
-
-#endif
-
-
-#if os(macOS)
-
-extension CGRect {
-    
-    /// Insets in both axis by the same given value.
-    /// - Parameter value: The value to inset in both axis.
-    /// - Returns: `self` inset by the given value in both axis.
-    @inlinable nonisolated
-    func inset(by value: CGFloat) -> Self {
-        self.insetBy(dx: value, dy: value)
-    }
-
-}
-
-#endif
-
-
 // MARK: - Path Interactions
 
 extension CGRect {
-    
+
     /// Adds `self` to the given path.
     ///
+    /// Returns `self` unmodified, to allow for method chaining.
+    ///
     /// - Parameter path: The path to add `self` into.
-    /// - Returns: The given path after the addition.
+    /// - Returns: `self`, unmodified.
     @discardableResult
     @inlinable nonisolated
     public func addToPath(_ path: inout Path) -> Self {

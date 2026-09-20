@@ -1,14 +1,13 @@
 # ``GeometryAdditions``
 
-Additions to `CGPoint`, `CGSize`, `CGRect` and other geometry related types.
+Additions to `CGPoint`, `CGSize`, `CGRect` and other geometry-related types.
 
 ## Overview
 
-`GeometryAdditions` adds a variety of functions for working with geometry related types like
-`CGPoint` or `Edge`.
+`GeometryAdditions` adds a variety of functions for working with geometry-related types like
+`CGPoint` or `CGRect`.
 
-The package also adds several modifier functions that can be used for [method chaining](https://en.wikipedia.org/wiki/Method_chaining)
-for code that lives in `@ContentBuilder` closures.
+The package adds several modifier functions that can be used for [method chaining](https://en.wikipedia.org/wiki/Method_chaining).
 
 
 ## Topics
@@ -18,8 +17,3 @@ for code that lives in `@ContentBuilder` closures.
 + ``CoreFoundation/CGPoint``
 + ``CoreFoundation/CGSize``
 + ``CoreFoundation/CGRect``
-
-
-### Edges
-
-+ ``SwiftUICore/EdgeInsets``
