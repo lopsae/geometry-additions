@@ -65,10 +65,10 @@ extension CGRect {
 
 extension CGRect {
 
-    /// Sets the given properties in a copy of `self`.
+    /// Sets the given properties.
     ///
-    /// Updates in a copy of `self` only the properties for the provided parameters. Any parameters
-    /// that are omitted, or where `nil` is passed, keep the value of `self`.
+    /// Updates only the properties for the provided parameters. Any parameters that are omitted,
+    /// or where `nil` is passed, keep the value of `self`.
     ///
     /// - Parameters:
     ///   - newX: The new value for `origin.x`.
@@ -171,8 +171,8 @@ extension CGRect {
 
     /// Insets all edges by the same given value.
     ///
-    /// - Parameter value: The value to inset all edges.
-    /// - Returns: `self` inset by the given value in all edges.
+    /// - Parameter value: The value to inset all edges by.
+    /// - Returns: `self` inset by the given value on all edges.
     @inlinable nonisolated
     public func inset(by value: CGFloat) -> Self {
         inset(by: UIEdgeInsets.all(value))
@@ -181,8 +181,8 @@ extension CGRect {
 
     /// Outsets all edges by the same given value.
     ///
-    /// - Parameter value: The value to outset all edges.
-    /// - Returns: `self` outset by the given value in all edges.
+    /// - Parameter value: The value to outset all edges by.
+    /// - Returns: `self` outset by the given value on all edges.
     @inlinable nonisolated
     public func outset(by value: CGFloat) -> Self {
         inset(by: UIEdgeInsets.all(-value))
@@ -199,8 +199,8 @@ extension CGRect {
 
     /// Insets all edges by the same given value.
     ///
-    /// - Parameter value: The value to inset all edges.
-    /// - Returns: `self` inset by the given value in all edges.
+    /// - Parameter value: The value to inset all edges by.
+    /// - Returns: `self` inset by the given value on all edges.
     @inlinable nonisolated
     public func inset(by value: CGFloat) -> Self {
         self.insetBy(dx: value, dy: value)
@@ -209,8 +209,8 @@ extension CGRect {
 
     /// Outsets all edges by the same given value.
     ///
-    /// - Parameter value: The value to outset all edges.
-    /// - Returns: `self` outset by the given value in all edges.
+    /// - Parameter value: The value to outset all edges by.
+    /// - Returns: `self` outset by the given value on all edges.
     @inlinable nonisolated
     public func outset(by value: CGFloat) -> Self {
         self.insetBy(dx: -value, dy: -value)
@@ -246,11 +246,13 @@ extension CGRect {
 // MARK: - Path Interactions
 
 extension CGRect {
-    
+
     /// Adds `self` to the given path.
     ///
+    /// Returns `self` unmodified, to allow for method chaining.
+    ///
     /// - Parameter path: The path to add `self` into.
-    /// - Returns: The given path after the addition.
+    /// - Returns: `self`, unmodified.
     @discardableResult
     @inlinable nonisolated
     public func addToPath(_ path: inout Path) -> Self {

@@ -1,7 +1,7 @@
 Geometry Additions
 ==================
 
-Additions to `CGPoint`, `CGSize`, `CGRect` and other geometry related types.
+Additions to `CGPoint`, `CGSize`, `CGRect` and other geometry-related types.
 
 
 
