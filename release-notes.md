@@ -1,11 +1,9 @@
 Release Notes
 =============
 
-v0.6.1
-------
-In development.
-
-+ Further publicize api.
+v0.6.1 - Publicize API
+----------------------
++ Document and publicize API for `CGPoint`, `CGSize`, and `CGRect`.
 
 
 v0.6.0 - Initial Release
