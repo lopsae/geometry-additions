@@ -3,6 +3,7 @@ Release Notes
 
 v0.6.2
 ------
+In development.
 + Renamed `CGPoint.offset` functions to `adding`.
 + Added `CGPoint.add` function.
 + Renamed `CGRect.offset` function to `offsetting`.
@@ -11,7 +12,7 @@ v0.6.2
 
 v0.6.1 - Publicize API
 ----------------------
-// FIXME: Release date.
+Released 2026 September 20th.
 + Document and publicize API for `CGPoint`, `CGSize`, and `CGRect`.
 
 
