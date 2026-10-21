@@ -32,19 +32,19 @@ struct CGPointAdditionsTests {
     @Test func addingPoint() {
         var point: CGPoint = [5, 7]
 
-        #expect(point.adding(by: .zero)    == [5, 7])
-        #expect(point.adding(by: [3, 4])   == [8, 11])
-        #expect(point.adding(by: [-8, -9]) == [-3, -2])
+        #expect(point.adding(point: .zero)    == [5, 7])
+        #expect(point.adding(point: [3, 4])   == [8, 11])
+        #expect(point.adding(point: [-8, -9]) == [-3, -2])
 
-        point.add(by: [3, 4])
+        point.add(point: [3, 4])
         #expect(point == [8, 11])
     }
 
     @Test func addingSize() {
         let point: CGPoint = [5, 7]
 
-        #expect(point.adding(bySize: .zero) == [5, 7])
-        #expect(point.adding(bySize: [6, 8]) == [11, 15])
+        #expect(point.adding(size: .zero) == [5, 7])
+        #expect(point.adding(size: [6, 8]) == [11, 15])
     }
 
 

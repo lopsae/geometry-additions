@@ -51,7 +51,7 @@ extension CGPoint {
     /// - Parameter other: A point which components are added to `self`.
     /// - Returns: `self` offset by the given point.
     @inlinable nonisolated
-    public func adding(by other: Self) -> Self {
+    public func adding(point other: Self) -> Self {
         .init(
             x: self.x + other.x,
             y: self.y + other.y
@@ -67,7 +67,7 @@ extension CGPoint {
     /// - Parameter size: The size which components are added to `self`.
     /// - Returns: `self` offset by the given size.
     @inlinable nonisolated
-    public func adding(bySize size: CGSize) -> Self {
+    public func adding(size: CGSize) -> Self {
         .init(
             x: self.x + size.width,
             y: self.y + size.height
@@ -79,8 +79,8 @@ extension CGPoint {
     ///
     /// - Parameter other: A point which components are added to `self`.
     @inlinable nonisolated
-    public mutating func add(by other: CGPoint) {
-        self = self.adding(by: other)
+    public mutating func add(point other: CGPoint) {
+        self = self.adding(point: other)
     }
 
 

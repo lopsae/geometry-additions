@@ -18,7 +18,7 @@ extension CGRect {
     public var centerPoint: CGPoint {
         size.toPoint
             .multiplying(by: 0.5)
-            .adding(by: origin)
+            .adding(point: origin)
     }
 
     // Point at the center of the top edge.
