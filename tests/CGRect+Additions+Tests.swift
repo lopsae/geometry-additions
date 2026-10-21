@@ -84,11 +84,11 @@ struct CGRectAdditionsTests {
     @Test func offset() {
         let rect: CGRect = .init(origin: [5, 7], size: [200, 100])
 
-        #expect(rect.offset()             == rect)
-        #expect(rect.offset(x: 3)         == .init(origin: [8, 7],   size: [200, 100]))
-        #expect(rect.offset(y: 4)         == .init(origin: [5, 11],  size: [200, 100]))
-        #expect(rect.offset(x: 3, y: 4)   == .init(origin: [8, 11],  size: [200, 100]))
-        #expect(rect.offset(x: -8, y: -9) == .init(origin: [-3, -2], size: [200, 100]))
+        #expect(rect.offsetting()             == rect)
+        #expect(rect.offsetting(x: 3)         == .init(origin: [8, 7],   size: [200, 100]))
+        #expect(rect.offsetting(y: 4)         == .init(origin: [5, 11],  size: [200, 100]))
+        #expect(rect.offsetting(x: 3, y: 4)   == .init(origin: [8, 11],  size: [200, 100]))
+        #expect(rect.offsetting(x: -8, y: -9) == .init(origin: [-3, -2], size: [200, 100]))
     }
 
 

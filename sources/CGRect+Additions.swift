@@ -175,7 +175,6 @@ extension CGRect {
     }
 
 
-    // FIXME: Rename to offsetting.
     /// Offsets by the given coordinate components.
     ///
     /// Equivalent to adding the given coordinate components to `origin`.
@@ -185,7 +184,7 @@ extension CGRect {
     ///   - y: The value to offset `origin.y`; defaults to zero.
     /// - Returns: `self` offset by the given coordinate components.
     @inlinable nonisolated
-    public func offset(x: CGFloat = .zero, y: CGFloat = .zero) -> Self {
+    public func offsetting(x: CGFloat = .zero, y: CGFloat = .zero) -> Self {
         self.offsetBy(dx: x, dy: y)
     }
 

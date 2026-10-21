@@ -5,6 +5,7 @@ v0.6.2
 ------
 + Renamed `CGPoint.offset` functions to `adding`.
 + Added `CGPoint.add` function.
++ Renamed `CGRect.offset` function to `offsetting`.
 + Added `CGRect` center edge properties.
 
 
