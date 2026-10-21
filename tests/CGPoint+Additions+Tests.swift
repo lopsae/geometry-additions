@@ -30,11 +30,14 @@ struct CGPointAdditionsTests {
     }
 
     @Test func addingPoint() {
-        let point: CGPoint = [5, 7]
+        var point: CGPoint = [5, 7]
 
         #expect(point.adding(by: .zero)    == [5, 7])
         #expect(point.adding(by: [3, 4])   == [8, 11])
         #expect(point.adding(by: [-8, -9]) == [-3, -2])
+
+        point.add(by: [3, 4])
+        #expect(point == [8, 11])
     }
 
     @Test func addingSize() {

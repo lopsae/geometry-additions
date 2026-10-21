@@ -75,6 +75,15 @@ extension CGPoint {
     }
 
 
+    /// Updates `self` by adding the components of the given `CGPoint`.
+    ///
+    /// - Parameter other: A point which components are added to `self`.
+    @inlinable nonisolated
+    public mutating func add(by other: CGPoint) {
+        self = self.adding(by: other)
+    }
+
+
     /// Multiplies both components by a given multiplier.
     ///
     /// - Parameter multiplier: The value to multiply both components by.
