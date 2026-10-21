@@ -14,9 +14,13 @@ import Testing
 
 struct CGRectAdditionsTests {
 
-    @Test func centerPoint() {
+    @Test func centerPoints() {
         let rect: CGRect = .init(origin: [5, 7], size: [200, 100])
-        #expect(rect.centerPoint == [105, 57])
+        #expect(rect.centerPoint         == [105, 57])
+        #expect(rect.topCenterPoint      == [105, 7])
+        #expect(rect.leadingCenterPoint  == [5,   57])
+        #expect(rect.bottomCenterPoint   == [105, 107])
+        #expect(rect.trailingCenterPoint == [205, 57])
     }
 
 
