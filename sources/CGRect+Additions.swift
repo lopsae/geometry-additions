@@ -18,35 +18,35 @@ extension CGRect {
     public var centerPoint: CGPoint {
         size.toPoint
             .multiplying(by: 0.5)
-            .offset(by: origin)
+            .adding(by: origin)
     }
 
     // Point at the center of the top edge.
     @inlinable nonisolated
     public var topCenterPoint: CGPoint {
         .init(x: minX, y: minY)
-        .offset(x: width/2)
+        .adding(x: width/2)
     }
 
     // Point at the center of the leading edge.
     @inlinable nonisolated
     public var leadingCenterPoint: CGPoint {
         .init(x: minX, y: minY)
-        .offset(y: height/2)
+        .adding(y: height/2)
     }
 
     // Point at the center of the bottom edge.
     @inlinable nonisolated
     public var bottomCenterPoint: CGPoint {
         .init(x: minX, y: maxY)
-        .offset(x: width/2)
+        .adding(x: width/2)
     }
 
     // Point at the center of the trailing edge.
     @inlinable nonisolated
     public var trailingCenterPoint: CGPoint {
         .init(x: maxX, y: minY)
-        .offset(y: height/2)
+        .adding(y: height/2)
     }
 
     /// Point at the minimum _x_ and _y_ values.
@@ -175,6 +175,7 @@ extension CGRect {
     }
 
 
+    // FIXME: Rename to offsetting.
     /// Offsets by the given coordinate components.
     ///
     /// Equivalent to adding the given coordinate components to `origin`.
