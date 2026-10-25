@@ -206,6 +206,26 @@ extension CGRect {
         self.offsetBy(dx: x, dy: y)
     }
 
+
+    /// Rectangle that contains both `self` and the given rectangle.
+    ///
+    /// - Parameter other: The rectangle to envelop.
+    /// - Returns: A rectangle that contains both `self` and the given rectangle.
+    @inlinable nonisolated
+    public func enveloping(_ other: CGRect) -> Self {
+        union(other)
+    }
+
+
+
+    /// Updates `self` to contain both `self` and the given rectangle.
+    ///
+    /// - Parameter other: The rectangle to envelop.
+    @inlinable nonisolated
+    public mutating func envelop(_ other: CGRect) {
+        self = union(other)
+    }
+
 }
 
 

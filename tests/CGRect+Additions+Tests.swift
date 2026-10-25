@@ -89,7 +89,7 @@ struct CGRectAdditionsTests {
         #expect(toAlign.aligned(to: .trailing, of: rect) == .init(origin: [35, 20], size: [60, 40]))
     }
 
-    @Test func offset() {
+    @Test func offsetting() {
         let rect: CGRect = .init(origin: [5, 7], size: [200, 100])
 
         #expect(rect.offsetting()             == rect)
@@ -97,6 +97,48 @@ struct CGRectAdditionsTests {
         #expect(rect.offsetting(y: 4)         == .init(origin: [5, 11],  size: [200, 100]))
         #expect(rect.offsetting(x: 3, y: 4)   == .init(origin: [8, 11],  size: [200, 100]))
         #expect(rect.offsetting(x: -8, y: -9) == .init(origin: [-3, -2], size: [200, 100]))
+    }
+
+
+    @Test func enveloping() {
+        let rect: CGRect = .init(origin: [5, 7], size: [200, 100])
+        var otherRect: CGRect
+
+        #expect(rect.enveloping(.zero) == .init(origin: [0, 0], size: [205, 107]))
+
+        otherRect = .init(origin: [300, 200], size: .zero)
+        #expect(rect.enveloping(otherRect) == CGRect(origin: [5, 7], size: [200+95, 100+93]))
+
+        otherRect = .init(origin: [3, 20], size: [10, 10])
+        #expect(rect.enveloping(otherRect) == CGRect(origin: [3, 7], size: [200+2, 100]))
+
+        otherRect = .init(origin: [20, 4], size: [10, 10])
+        #expect(rect.enveloping(otherRect) == CGRect(origin: [5, 4], size: [200, 100+3]))
+    }
+
+    @Test func envelop() {
+        let originalRect: CGRect = .init(origin: [5, 7], size: [200, 100])
+        var rect: CGRect
+        var otherRect: CGRect
+
+        rect = originalRect
+        rect.envelop(.zero)
+        #expect(rect == .init(origin: [0, 0], size: [205, 107]))
+
+        rect = originalRect
+        otherRect = .init(origin: [300, 200], size: .zero)
+        rect.envelop(otherRect)
+        #expect(rect == CGRect(origin: [5, 7], size: [200+95, 100+93]))
+
+        rect = originalRect
+        otherRect = .init(origin: [3, 20], size: [10, 10])
+        rect.envelop(otherRect)
+        #expect(rect == CGRect(origin: [3, 7], size: [200+2, 100]))
+
+        rect = originalRect
+        otherRect = .init(origin: [20, 4], size: [10, 10])
+        rect.envelop(otherRect)
+        #expect(rect == CGRect(origin: [5, 4], size: [200, 100+3]))
     }
 
 

@@ -171,12 +171,12 @@ extension CGSize {
     }
 
 
-    /// Size that can contain both `self` and the given size.
+    /// Size that contains both `self` and the given size.
     ///
     /// The returned size uses the largest of each component from both sizes.
     ///
     /// - Parameter other: The size to envelop.
-    /// - Returns: A size that can contain both `self` and the given size.
+    /// - Returns: A size that contains both `self` and the given size.
     @inlinable nonisolated
     public func enveloping(_ other: CGSize) -> Self {
         .init(
