@@ -3,6 +3,17 @@ Geometry Additions
 
 Additions to `CGPoint`, `CGSize`, `CGRect` and other geometry-related types.
 
+This package includes extensions to perform mutating and method-chaining operations with `CGPoint`, 
+`CGSize`, `CGRect`, and related types.
+
+
+Documentation
+-------------
+
+Documentation is available through SwiftPackageIndex:
+```
+https://swiftpackageindex.com/lopsae/geometry-additions/documentation/geometryadditions
+```
 
 
 License
