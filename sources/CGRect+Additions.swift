@@ -85,6 +85,24 @@ extension CGRect {
         .init(x: minX, y: maxY)
     }
 
+
+    /// Rectangle that bisects horizontally.
+    ///
+    /// The resulting rectangle cuts `self` in half horizontally, and always has a `height` of zero.
+    @inlinable nonisolated
+    public var horizontalBisector: CGRect {
+        self.setting(y: minY + height/2, height: .zero)
+    }
+
+
+    /// Rectangle that bisects vertically.
+    ///
+    /// The resulting rectangle cuts `self` in half vertically, and always has a `width` of zero.
+    @inlinable nonisolated
+    public var verticalBisector: CGRect {
+        self.setting(x: minX + width/2, width: .zero)
+    }
+
 }
 
 

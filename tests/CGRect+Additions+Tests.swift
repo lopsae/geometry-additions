@@ -37,6 +37,14 @@ struct CGRectAdditionsTests {
     }
 
 
+    @Test func bisectors() {
+        let rect: CGRect = .init(origin: [6, 8], size: [200, 100])
+
+        #expect(rect.horizontalBisector == .init(origin: [6, 58], size: [200, 0]))
+        #expect(rect.verticalBisector   == .init(origin: [106, 8], size: [0, 100]))
+    }
+
+
     @Test func setting() {
         let rect: CGRect = .init(origin: [5, 7], size: [200, 100])
 
