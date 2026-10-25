@@ -10,10 +10,9 @@ This package includes extensions to perform mutating and method-chaining operati
 Documentation
 -------------
 
-Documentation is available through SwiftPackageIndex:
-```
-https://swiftpackageindex.com/lopsae/geometry-additions/documentation/geometryadditions
-```
+Documentation is available at [`swiftpackageindex/lopsae/geometry-additions`][latest-documentation].
+
+[latest-documentation]: https://swiftpackageindex.com/lopsae/geometry-additions/documentation/geometryadditions
 
 
 License
