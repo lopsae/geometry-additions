@@ -1,13 +1,14 @@
 Release Notes
 =============
 
-v0.6.2
-------
+v0.6.2 - More Additions
+-----------------------
 In development.
 + Renamed `CGPoint.offset` functions to `adding`.
-+ Added `CGPoint.add` function.
 + Renamed `CGRect.offset` function to `offsetting`.
-+ Added `CGRect` center edge properties.
++ Added `add` function to `CGPoint`.
++ Added center edge and bisector properties to ``CGRect`.
++ Added `envelop` and `enveloping` functions to `CGRect`.
 
 
 v0.6.1 - Publicize API
