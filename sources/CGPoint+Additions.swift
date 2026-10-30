@@ -31,16 +31,14 @@ extension CGPoint: @retroactive ExpressibleByArrayLiteral {
 
 extension CGPoint {
 
-    /// Offsets by the given components.
-    ///
-    /// Equivalent to adding the given components to `self`.
+    /// Adds the given components.
     ///
     /// - Parameters:
-    ///   - x: The value to offset the _x_ component; defaults to zero.
-    ///   - y: The value to offset the _y_ component; defaults to zero.
+    ///   - x: The value to add to the _x_ component; defaults to zero.
+    ///   - y: The value to add to the _y_ component; defaults to zero.
     /// - Returns: `self` offset by the given components.
     @inlinable nonisolated
-    public func offset(x: CGFloat = .zero, y: CGFloat = .zero) -> Self {
+    public func adding(x: CGFloat = .zero, y: CGFloat = .zero) -> Self {
         .init(
             x: self.x + x,
             y: self.y + y
@@ -48,14 +46,12 @@ extension CGPoint {
     }
 
 
-    /// Offsets by the given `CGPoint`.
+    /// Adds the components of the given `CGPoint`.
     ///
-    /// Equivalent to adding the corresponding components of `other`.
-    ///
-    /// - Parameter other: A point to offset `self` by.
+    /// - Parameter other: A point which components are added to `self`.
     /// - Returns: `self` offset by the given point.
     @inlinable nonisolated
-    public func offset(by other: Self) -> Self {
+    public func adding(point other: Self) -> Self {
         .init(
             x: self.x + other.x,
             y: self.y + other.y
@@ -63,19 +59,28 @@ extension CGPoint {
     }
 
 
-    /// Offsets by the given `CGSize`.
+    /// Adds the components of the given `CGSize`.
     ///
-    /// Equivalent to adding the corresponding axial components: _x_ is offset by the size's width,
-    /// and _y_ by its height.
+    /// Adds the corresponding axial components: the size's width is added to _x_, and its height
+    /// to _y_.
     ///
-    /// - Parameter size: The size to offset `self` by.
+    /// - Parameter size: The size which components are added to `self`.
     /// - Returns: `self` offset by the given size.
     @inlinable nonisolated
-    public func offset(bySize size: CGSize) -> Self {
+    public func adding(size: CGSize) -> Self {
         .init(
             x: self.x + size.width,
             y: self.y + size.height
         )
+    }
+
+
+    /// Updates `self` by adding the components of the given `CGPoint`.
+    ///
+    /// - Parameter other: A point which components are added to `self`.
+    @inlinable nonisolated
+    public mutating func add(point other: CGPoint) {
+        self = self.adding(point: other)
     }
 
 

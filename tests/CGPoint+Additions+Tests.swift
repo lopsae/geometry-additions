@@ -19,29 +19,32 @@ struct CGPointAdditionsTests {
         #expect(point.y == 7)
     }
 
-    @Test func offsetComponents() {
+    @Test func addingComponents() {
         let point: CGPoint = [5, 7]
 
-        #expect(point.offset()             == [5, 7])
-        #expect(point.offset(x: 3)         == [8, 7])
-        #expect(point.offset(y: 4)         == [5, 11])
-        #expect(point.offset(x: 3, y: 4)   == [8, 11])
-        #expect(point.offset(x: -8, y: -9) == [-3, -2])
+        #expect(point.adding()             == [5, 7])
+        #expect(point.adding(x: 3)         == [8, 7])
+        #expect(point.adding(y: 4)         == [5, 11])
+        #expect(point.adding(x: 3, y: 4)   == [8, 11])
+        #expect(point.adding(x: -8, y: -9) == [-3, -2])
     }
 
-    @Test func offsetByPoint() {
-        let point: CGPoint = [5, 7]
+    @Test func addingPoint() {
+        var point: CGPoint = [5, 7]
 
-        #expect(point.offset(by: .zero)    == [5, 7])
-        #expect(point.offset(by: [3, 4])   == [8, 11])
-        #expect(point.offset(by: [-8, -9]) == [-3, -2])
+        #expect(point.adding(point: .zero)    == [5, 7])
+        #expect(point.adding(point: [3, 4])   == [8, 11])
+        #expect(point.adding(point: [-8, -9]) == [-3, -2])
+
+        point.add(point: [3, 4])
+        #expect(point == [8, 11])
     }
 
-    @Test func offsetBySize() {
+    @Test func addingSize() {
         let point: CGPoint = [5, 7]
 
-        #expect(point.offset(bySize: .zero) == [5, 7])
-        #expect(point.offset(bySize: [6, 8]) == [11, 15])
+        #expect(point.adding(size: .zero) == [5, 7])
+        #expect(point.adding(size: [6, 8]) == [11, 15])
     }
 
 

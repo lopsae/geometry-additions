@@ -186,8 +186,13 @@ struct CGSizeAdditionsTests {
 
         let tall: CGSize = [10, 20]
         #expect(tall.scaled(toFill: [30, 30]) == [30, 60])
+        #expect(tall.scaled(toFill: [50, 30]) == [50, 100])
+        #expect(tall.scaled(toFill: [30, 50]) == [30, 60])
 
-        // FIXME: add wide.
+        let wide: CGSize = [20, 10]
+        #expect(wide.scaled(toFill: [30, 30]) == [60, 30])
+        #expect(wide.scaled(toFill: [50, 30]) == [60, 30])
+        #expect(wide.scaled(toFill: [30, 50]) == [100, 50])
     }
 
     @Test func minMaxComponent() {
