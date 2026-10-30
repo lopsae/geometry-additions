@@ -18,7 +18,35 @@ extension CGRect {
     public var centerPoint: CGPoint {
         size.toPoint
             .multiplying(by: 0.5)
-            .offset(by: origin)
+            .adding(point: origin)
+    }
+
+    // Point at the center of the top edge.
+    @inlinable nonisolated
+    public var topCenterPoint: CGPoint {
+        .init(x: minX, y: minY)
+        .adding(x: width/2)
+    }
+
+    // Point at the center of the leading edge.
+    @inlinable nonisolated
+    public var leadingCenterPoint: CGPoint {
+        .init(x: minX, y: minY)
+        .adding(y: height/2)
+    }
+
+    // Point at the center of the bottom edge.
+    @inlinable nonisolated
+    public var bottomCenterPoint: CGPoint {
+        .init(x: minX, y: maxY)
+        .adding(x: width/2)
+    }
+
+    // Point at the center of the trailing edge.
+    @inlinable nonisolated
+    public var trailingCenterPoint: CGPoint {
+        .init(x: maxX, y: minY)
+        .adding(y: height/2)
     }
 
     /// Point at the minimum _x_ and _y_ values.
@@ -55,6 +83,24 @@ extension CGRect {
     @inlinable nonisolated
     public var bottomLeadingPoint: CGPoint {
         .init(x: minX, y: maxY)
+    }
+
+
+    /// Rectangle that bisects horizontally.
+    ///
+    /// The resulting rectangle cuts `self` in half horizontally, and always has a `height` of zero.
+    @inlinable nonisolated
+    public var horizontalBisector: CGRect {
+        self.setting(y: minY + height/2, height: .zero)
+    }
+
+
+    /// Rectangle that bisects vertically.
+    ///
+    /// The resulting rectangle cuts `self` in half vertically, and always has a `width` of zero.
+    @inlinable nonisolated
+    public var verticalBisector: CGRect {
+        self.setting(x: minX + width/2, width: .zero)
     }
 
 }
@@ -156,8 +202,28 @@ extension CGRect {
     ///   - y: The value to offset `origin.y`; defaults to zero.
     /// - Returns: `self` offset by the given coordinate components.
     @inlinable nonisolated
-    public func offset(x: CGFloat = .zero, y: CGFloat = .zero) -> Self {
+    public func offsetting(x: CGFloat = .zero, y: CGFloat = .zero) -> Self {
         self.offsetBy(dx: x, dy: y)
+    }
+
+
+    /// Rectangle that contains both `self` and the given rectangle.
+    ///
+    /// - Parameter other: The rectangle to envelop.
+    /// - Returns: A rectangle that contains both `self` and the given rectangle.
+    @inlinable nonisolated
+    public func enveloping(_ other: CGRect) -> Self {
+        union(other)
+    }
+
+
+
+    /// Updates `self` to contain both `self` and the given rectangle.
+    ///
+    /// - Parameter other: The rectangle to envelop.
+    @inlinable nonisolated
+    public mutating func envelop(_ other: CGRect) {
+        self = union(other)
     }
 
 }

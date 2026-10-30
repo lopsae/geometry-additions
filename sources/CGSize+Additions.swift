@@ -32,14 +32,6 @@ extension CGSize: @retroactive ExpressibleByArrayLiteral {
 
 extension CGSize {
 
-    // TODO: Fully remove all? I don't like how it reads.
-
-//    @inlinable nonisolated
-//    init(all length: CGFloat) {
-//        self.init(width: length, height: length)
-//    }
-
-
     /// Creates a square size with the given length.
     ///
     /// - Parameter length: The length for both _width_ and _height_.
@@ -47,15 +39,6 @@ extension CGSize {
     public init(squareOf length: CGFloat) {
         self.init(width: length, height: length)
     }
-
-//    /// Creates a size with both components set to the given length.
-//    ///
-//    /// - Parameter length: The length for both width and height.
-//    /// - Returns: A size with both components set to the same value.
-//    @inlinable nonisolated
-//    public static func all(_ length: CGFloat) -> Self {
-//        .init(all: length)
-//    }
 
 
     /// Creates a square size with the given length.
@@ -171,12 +154,12 @@ extension CGSize {
     }
 
 
-    /// Size that can contain both `self` and the given size.
+    /// Size that contains both `self` and the given size.
     ///
     /// The returned size uses the largest of each component from both sizes.
     ///
     /// - Parameter other: The size to envelop.
-    /// - Returns: A size that can contain both `self` and the given size.
+    /// - Returns: A size that contains both `self` and the given size.
     @inlinable nonisolated
     public func enveloping(_ other: CGSize) -> Self {
         .init(
