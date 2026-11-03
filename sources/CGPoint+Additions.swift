@@ -62,6 +62,27 @@ extension CGPoint {
 
 extension CGPoint {
 
+    /// Sets the given components.
+    ///
+    /// Updates only the components for the provided parameters. Any parameters that are omitted,
+    /// or where `nil` is passed, keep the value of `self`.
+    ///
+    /// - Parameters:
+    ///   - newX: The new value for _x_.
+    ///   - newY: The new value for _y_.
+    /// - Returns: `self` with the given components updated.
+    @inlinable nonisolated
+    public func setting(
+        x newX: CGFloat? = nil,
+        y newY: CGFloat? = nil,
+    ) -> Self {
+        var mutablePoint = self
+        if let newX { mutablePoint.x = newX }
+        if let newY { mutablePoint.y = newY }
+        return mutablePoint
+    }
+
+
     /// Adds the given components.
     ///
     /// - Parameters:

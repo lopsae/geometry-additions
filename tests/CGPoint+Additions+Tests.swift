@@ -28,6 +28,18 @@ struct CGPointAdditionsTests {
         #expect(vPoint == [7, 5])
     }
 
+
+    @Test func setting() {
+        let point: CGPoint = [5, 7]
+
+        #expect(point.setting() == [5, 7])
+
+        #expect(point.setting(x: 1) == [1, 7])
+        #expect(point.setting(y: 2) == [5, 2])
+        #expect(point.setting(x: 1, y: 2) == [1, 2])
+    }
+
+
     @Test func addingComponents() {
         let point: CGPoint = [5, 7]
 
