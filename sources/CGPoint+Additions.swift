@@ -6,6 +6,12 @@
 
 public import CoreFoundation
 
+// TODO: Could some of these extensions be optional if `canImport(SwiftUI)`?
+public import SwiftUI
+
+
+// MARK: - ArrayLiteral
+
 
 extension CGPoint: @retroactive ExpressibleByArrayLiteral {
 
@@ -27,6 +33,31 @@ extension CGPoint: @retroactive ExpressibleByArrayLiteral {
     }
 
 }
+
+
+// MARK: - Initializers
+
+
+extension CGPoint {
+
+    /// Creates a point with components along and across a given axis.
+    ///
+    /// - Parameters:
+    ///   - axis: The axis along which the components are interpreted.
+    ///   - along: The component along `axis`.
+    ///   - across: The component across `axis`.
+    @inlinable nonisolated
+    public init(on axis: Axis, along: CGFloat, across: CGFloat) {
+        switch axis {
+        case .horizontal: self.init(x: along,  y: across)
+        case .vertical:   self.init(x: across, y: along)
+        }
+    }
+
+}
+
+
+// MARK: - Operations
 
 
 extension CGPoint {

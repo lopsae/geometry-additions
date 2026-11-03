@@ -19,6 +19,15 @@ struct CGPointAdditionsTests {
         #expect(point.y == 7)
     }
 
+
+    @Test func initOnAxis() {
+        let hPoint: CGPoint = .init(on: .horizontal, along: 5, across: 7)
+        #expect(hPoint == [5, 7])
+
+        let vPoint: CGPoint = .init(on: .vertical, along: 5, across: 7)
+        #expect(vPoint == [7, 5])
+    }
+
     @Test func addingComponents() {
         let point: CGPoint = [5, 7]
 
