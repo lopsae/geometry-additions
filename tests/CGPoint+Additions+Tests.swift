@@ -84,6 +84,24 @@ struct CGPointAdditionsTests {
         #expect(point.adding(6, orthogonal: 9, along: .vertical)   == [14,  13])
     }
 
+
+    @Test func addingTowards() {
+        let point: CGPoint = [5, 7]
+
+        #expect(point.adding(.zero, towards: .top)      == [5, 7])
+        #expect(point.adding(.zero, towards: .leading)  == [5, 7])
+        #expect(point.adding(.zero, towards: .bottom)   == [5, 7])
+        #expect(point.adding(.zero, towards: .trailing) == [5, 7])
+
+        #expect(point.adding(6, towards: .top)      == [5,  1])
+        #expect(point.adding(6, towards: .trailing) == [11, 7])
+        #expect(point.adding(6, towards: .bottom)   == [5,  13])
+        #expect(point.adding(6, towards: .leading)  == [-1, 7])
+
+        #expect(point.adding(6, orthogonal: 9, towards: .top)      == [14, 1])
+        #expect(point.adding(6, orthogonal: 9, towards: .trailing) == [11, 16])
+        #expect(point.adding(6, orthogonal: 9, towards: .bottom)   == [-4, 13])
+        #expect(point.adding(6, orthogonal: 9, towards: .leading)  == [-1, -2])
     }
 
 
@@ -97,6 +115,7 @@ struct CGPointAdditionsTests {
         #expect(point.multiplying(by: .zero) == .zero)
     }
 
+
     @Test func hadamardByPoint() {
         let point: CGPoint = [5, 7]
 
@@ -109,6 +128,7 @@ struct CGPointAdditionsTests {
         #expect(point.hadamard(by: [0.5, 2]) == [2.5, 14])
         #expect(point.hadamard(by: [-1, -2]) == [-5, -14])
     }
+
 
     @Test func hadamardBySize() {
         let point: CGPoint = [5, 7]

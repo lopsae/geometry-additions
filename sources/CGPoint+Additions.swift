@@ -146,6 +146,42 @@ extension CGPoint {
         }
     }
 
+
+    /// Adds to the components towards a given edge.
+    ///
+    /// The given value is added or subtracted to a component based on the direction of `edge`:
+    /// E.g., adding towards the `trailing` edge adds to _x_, while adding to the `leading` edge
+    /// subtracts.
+    ///
+    /// The `orthogonal` value is likewise added or subtracted to the orthogonal component towards
+    /// the next edge rotated towards trailing: top → trailing → bottom → leading → top. E.g., when
+    /// `edge` is `trailing`, the rotated edge is `bottom`, and the `orthogonal` value is added to
+    /// _y_.
+    ///
+    /// - Parameters:
+    ///   - value: The value to add or subtract to the component aligned with `edge`.
+    ///   - orthogonal: The value to add or subtract to the component orthogonal to `edge`.
+    ///   - edge: The `edge` towards which the components are offset.
+    /// - Returns: `self` offset towards the given edge.
+    @inlinable nonisolated
+    public func adding(
+        _ value: CGFloat,
+        orthogonal: CGFloat = .zero,
+        towards edge: Edge
+    ) -> Self {
+        switch edge {
+        case .top:
+            self.adding(x: orthogonal, y: -value)
+        case .trailing:
+            self.adding(x: value, y: orthogonal)
+        case .bottom:
+            self.adding(x: -orthogonal, y: value)
+        case .leading:
+            self.adding(x: -value, y: -orthogonal)
+        }
+    }
+
+
     /// Updates `self` by adding the components of the given `CGPoint`.
     ///
     /// - Parameter other: A point which components are added to `self`.
