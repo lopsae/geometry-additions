@@ -127,6 +127,25 @@ extension CGPoint {
     }
 
 
+    /// Adds to the components along and orthogonal a given axis.
+    ///
+    /// - Parameters:
+    ///   - value: The value to add to the component along `axis`.
+    ///   - orthogonal: The value to add the component orthogonal to `axis`.
+    ///   - axis: The axis along which the components are interpreted.
+    /// - Returns: `self` offset along the given axis.
+    @inlinable nonisolated
+    public func adding(
+        _ value: CGFloat,
+        orthogonal: CGFloat = .zero,
+        along axis: Axis
+    ) -> Self {
+        switch axis {
+        case .horizontal: self.adding(x: value,      y: orthogonal)
+        case .vertical:   self.adding(x: orthogonal, y: value)
+        }
+    }
+
     /// Updates `self` by adding the components of the given `CGPoint`.
     ///
     /// - Parameter other: A point which components are added to `self`.

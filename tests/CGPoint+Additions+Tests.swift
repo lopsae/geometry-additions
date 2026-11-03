@@ -50,6 +50,7 @@ struct CGPointAdditionsTests {
         #expect(point.adding(x: -8, y: -9) == [-3, -2])
     }
 
+
     @Test func addingPoint() {
         var point: CGPoint = [5, 7]
 
@@ -61,11 +62,28 @@ struct CGPointAdditionsTests {
         #expect(point == [8, 11])
     }
 
+
     @Test func addingSize() {
         let point: CGPoint = [5, 7]
 
         #expect(point.adding(size: .zero) == [5, 7])
-        #expect(point.adding(size: [6, 8]) == [11, 15])
+        #expect(point.adding(size: [6, 9]) == [11, 16])
+    }
+
+
+    @Test func addingAlong() {
+        let point: CGPoint = [5, 7]
+
+        #expect(point.adding(.zero, along: .horizontal) == [5, 7])
+        #expect(point.adding(.zero, along: .vertical)   == [5, 7])
+
+        #expect(point.adding(6, along: .horizontal) == [11, 7])
+        #expect(point.adding(6, along: .vertical)   == [5,  13])
+
+        #expect(point.adding(6, orthogonal: 9, along: .horizontal) == [11, 16])
+        #expect(point.adding(6, orthogonal: 9, along: .vertical)   == [14,  13])
+    }
+
     }
 
 
