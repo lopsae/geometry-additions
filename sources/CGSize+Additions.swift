@@ -8,6 +8,9 @@ public import CoreFoundation
 public import SwiftUI
 
 
+// MARK: - ArrayLiteral
+
+
 extension CGSize: @retroactive ExpressibleByArrayLiteral {
 
     /// Creates a size from a two-element array literal.
@@ -30,6 +33,9 @@ extension CGSize: @retroactive ExpressibleByArrayLiteral {
 }
 
 
+// MARK: - Initializers
+
+
 extension CGSize {
 
     /// Creates a square size with the given length.
@@ -49,6 +55,34 @@ extension CGSize {
     public static func square(of length: CGFloat) -> Self {
         .init(squareOf: length)
     }
+
+}
+
+
+// MARK: - Properties
+
+
+extension CGSize {
+
+    /// The length of the size along the given axis.
+    ///
+    /// - Parameter axis: The axis of the component to return.
+    /// - Returns: _width_ when the `horizontal` axis is provided, and _height_ for the `vertical` axis.
+    @inlinable nonisolated
+    public func length(along axis: Axis) -> CGFloat {
+        switch axis {
+        case .horizontal: width
+        case .vertical:   height
+        }
+    }
+
+}
+
+
+// MARK: - Operations
+
+
+extension CGSize {
 
 
     /// Sets the given components.

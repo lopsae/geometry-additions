@@ -19,12 +19,22 @@ struct CGSizeAdditionsTests {
         #expect(size.height == 7)
     }
 
+
     @Test func squareInitializers() {
         #expect(CGSize(squareOf: .zero) == .zero)
 
         #expect(CGSize(squareOf: 5)  == [5, 5])
         #expect(CGSize.square(of: 5) == [5, 5])
     }
+
+
+    @Test func lengthAlong() {
+        let size: CGSize = [5, 7]
+
+        #expect(size.length(along: .horizontal) == 5)
+        #expect(size.length(along: .vertical)   == 7)
+    }
+
 
     @Test func setting() {
         let size: CGSize = [5, 7]
@@ -35,6 +45,7 @@ struct CGSizeAdditionsTests {
 
         #expect(size.setting(width: 6, height: 8) == [6, 8])
     }
+
 
     @Test func settingAlong() {
         let size: CGSize = [5, 7]
