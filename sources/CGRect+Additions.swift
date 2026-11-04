@@ -313,6 +313,7 @@ extension CGRect {
 
 extension CGRect {
 
+    // FIXME: Consider deleting, this is provided by Pathable in PreviewUtilities.
     /// Adds `self` to the given path.
     ///
     /// Returns `self` unmodified, to allow for method chaining.
