@@ -17,10 +17,39 @@ struct CGRectAdditionsTests {
     @Test func centerPoints() {
         let rect: CGRect = .init(origin: [5, 7], size: [200, 100])
         #expect(rect.centerPoint         == [105, 57])
-        #expect(rect.topCenterPoint      == [105, 7])
-        #expect(rect.leadingCenterPoint  == [5,   57])
-        #expect(rect.bottomCenterPoint   == [105, 107])
-        #expect(rect.trailingCenterPoint == [205, 57])
+
+        let zeroSizeRect: CGRect = .init(origin: [5, 7], size: .zero)
+        #expect(zeroSizeRect.centerPoint == [5, 7])
+
+        #expect(CGRect.zero.centerPoint == .zero)
+    }
+
+
+    @Test func edgeCenterPoints() {
+        let rect: CGRect = .init(origin: [5, 7], size: [200, 100])
+
+        #expect(rect.topCenterPoint                 == [105, 7])
+        #expect(rect.edgeCenterPoint(on: .top)      == [105, 7])
+
+        #expect(rect.leadingCenterPoint             == [5,   57])
+        #expect(rect.edgeCenterPoint(on: .leading)  == [5,   57])
+
+        #expect(rect.bottomCenterPoint              == [105, 107])
+        #expect(rect.edgeCenterPoint(on: .bottom)   == [105, 107])
+
+        #expect(rect.trailingCenterPoint            == [205, 57])
+        #expect(rect.edgeCenterPoint(on: .trailing) == [205, 57])
+
+        let zero: CGRect = .zero
+        let edgeKeypaths: [KeyPath<CGRect, CGPoint>] = [
+            \.topCenterPoint, \.topCenterPoint, \.bottomCenterPoint, \.trailingCenterPoint
+        ]
+        edgeKeypaths.forEach { edgePointKeyPath in
+            #expect(zero[keyPath: edgePointKeyPath] == .zero)
+        }
+        Edge.allCases.forEach { edge in
+            #expect(zero.edgeCenterPoint(on: edge) == .zero)
+        }
     }
 
 

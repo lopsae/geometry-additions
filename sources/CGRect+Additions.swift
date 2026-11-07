@@ -49,6 +49,17 @@ extension CGRect {
         .adding(y: height/2)
     }
 
+    // Point at the center of the given edge.
+    @inlinable nonisolated
+    public func edgeCenterPoint(on edge: Edge) -> CGPoint {
+        switch edge {
+        case .top:      topCenterPoint
+        case .leading:  leadingCenterPoint
+        case .bottom:   bottomCenterPoint
+        case .trailing: trailingCenterPoint
+        }
+    }
+
     /// Point at the minimum _x_ and _y_ values.
     @inlinable nonisolated
     public var minPoint: CGPoint {
