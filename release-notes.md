@@ -15,8 +15,9 @@ v0.6.2 - More Additions
 + Renamed `CGPoint/offset` functions to `adding`.
 + Renamed `CGRect/offset` function to `offsetting`.
 + Added `CGPoint/add` function.
-+ Added center edge and bisector properties to `CGRect`.
-+ Added `envelop` and `enveloping` functions to `CGRect`.
++ Added `CGRect/topCenterPoint`, `leadingCenterPoint`, `bottomCenterPoint`, and `trailingCenterPoint` properties. 
++ Added `CGRect/horizontalBisector` and `verticalBisector` properties.
++ Added `CGRect/envelop` and `enveloping` functions.
 
 
 v0.6.1 - Publicize API
